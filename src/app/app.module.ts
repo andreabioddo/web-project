@@ -7,6 +7,7 @@ import { HomeComponent } from './components/home/home.component';
 import { PosterComponent } from './components/poster/poster.component';
 import { FilmIconComponent } from './components/film-icon/film-icon.component';
 import { GlobalService } from './global.service';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,7 +18,7 @@ import { GlobalService } from './global.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-   
+    HttpClientModule
   ],
   providers: [GlobalService],
   bootstrap: [AppComponent]

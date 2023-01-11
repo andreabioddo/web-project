@@ -18,11 +18,14 @@ export class HomeComponent implements OnInit {
     }
 
     logIn(e:any){
-        e.preventDefault();
-        // console.log(this.globalService.doLogin("Name", "pass"));
-    
+      e.preventDefault();
+      this.globalService.doLogin("Na@dd.me", "pass").subscribe((res:any) => {
+        alert("k")        
+      }, (error)=>{
+        console.log("credential invalid");
+      })
 
-    }
+  }
     ngOnInit(): void {
 
     }
