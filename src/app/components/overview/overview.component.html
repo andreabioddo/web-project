@@ -1,0 +1,9 @@
+<ul class="list-group  list-group-flush">
+    <li class="list-group-item" *ngFor="let item of results">
+        <h2>Name: {{item.name}}</h2>
+        <p class="text-muted">Description: {{item.description}}</p>
+        <p class="text-muted">Age: {{item.age}}</p>
+        <p class="text-muted">Duration: {{item.duration}}</p>
+        <button routerLink="/movie/{{item.id}}">Buy Tickets & See Reviews</button>
+    </li>
+</ul>

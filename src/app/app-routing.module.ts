@@ -3,11 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { PosterComponent } from './components/poster/poster.component';
 import { LoginActivate } from './login-activate';
-import { OverviewComponent } from './overview/overview.component';
+import { OverviewComponent } from './components/overview/overview.component';
+import { MovieDetailComponent } from './components/movie-detail/movie-detail.component';
 
 const routes: Routes = [{ path: '', component: HomeComponent },
 { path: 'poster', component: PosterComponent },
-{ path: 'overview', component: OverviewComponent, canActivate: [LoginActivate] }];
+{ path: 'overview', component: OverviewComponent, canActivate: [LoginActivate] },
+{ path: 'movie/:id', component: MovieDetailComponent, canActivate: [LoginActivate] }];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

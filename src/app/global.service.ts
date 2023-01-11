@@ -6,7 +6,7 @@ export class GlobalService {
 
     private token: string = '';
     public loggedIn = false;
-    private baseURL = "http://localhost:3000";
+    public baseURL = "http://localhost:3000";
     constructor(private http: HttpClient) { }
 
     doLogin(email: string, password: string) {

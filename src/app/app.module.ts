@@ -10,7 +10,8 @@ import { GlobalService } from './global.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { LoginActivate } from './login-activate';
-import { OverviewComponent } from './overview/overview.component';
+import { OverviewComponent } from './components/overview/overview.component';
+import { MovieDetailComponent } from './components/movie-detail/movie-detail.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { OverviewComponent } from './overview/overview.component';
     HomeComponent,
     PosterComponent,
     FilmIconComponent,
-    OverviewComponent
+    OverviewComponent,
+    MovieDetailComponent
   ],
   imports: [
     BrowserModule,
