@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { PosterComponent } from './components/poster/poster.component';
 import { FilmIconComponent } from './components/film-icon/film-icon.component';
-import { GlobalService } from './global.servise';
+import { GlobalService } from './global.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
