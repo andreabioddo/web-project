@@ -9,25 +9,22 @@ import { Inject } from '@angular/core';
 
 
 export class HomeComponent implements OnInit {
-    registration=false;
-    constructor(private globalService:GlobalService) { }
 
-    registrationOpen(e:any){
-        e.preventDefault();
-        this.registration=true;
-    }
-
-    logIn(e:any){
-      e.preventDefault();
-      this.globalService.doLogin("Na@dd.me", "pass").subscribe((res:any) => {
-        alert("k")        
-      }, (error)=>{
-        console.log("credential invalid");
-      })
+  public password!: string;
+  public email!: string;
+  registration = false;
+  constructor(private globalService: GlobalService) { }
+  registrationOpen(e: any) {
+    e.preventDefault();
+    this.registration = true;
+  }
+  logIn(e: any) {
+    e.preventDefault();
+    this.globalService.doLogin(this.email, this.password);
 
   }
-    ngOnInit(): void {
+  ngOnInit(): void {
 
-    }
+  }
 
 }

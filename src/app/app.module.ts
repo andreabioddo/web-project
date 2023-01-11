@@ -6,8 +6,11 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { PosterComponent } from './components/poster/poster.component';
 import { FilmIconComponent } from './components/film-icon/film-icon.component';
-import { GlobalService } from './global.service';
+import { GlobalService } from './global.servise';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +21,8 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [GlobalService],
   bootstrap: [AppComponent]
