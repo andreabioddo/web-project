@@ -9,6 +9,8 @@ import { FilmIconComponent } from './components/film-icon/film-icon.component';
 import { GlobalService } from './global.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { LoginActivate } from './login-activate';
+import { OverviewComponent } from './overview/overview.component';
 
 
 @NgModule({
@@ -16,7 +18,8 @@ import { FormsModule } from '@angular/forms';
     AppComponent,
     HomeComponent,
     PosterComponent,
-    FilmIconComponent
+    FilmIconComponent,
+    OverviewComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +27,7 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     FormsModule
   ],
-  providers: [GlobalService],
+  providers: [GlobalService, LoginActivate],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

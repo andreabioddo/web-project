@@ -4,7 +4,8 @@ import { User } from "./model/user"
 @Injectable()
 export class GlobalService {
 
-    private token!: string;
+    private token: string = '';
+    public loggedIn = false;
     private baseURL = "http://localhost:3000";
     constructor(private http: HttpClient) { }
 
@@ -26,7 +27,7 @@ export class GlobalService {
         return this.http.post<any>(this.baseURL + '/login', user, options).subscribe(
             token => {
                 this.token = token.login;
-                console.log(token);
+                this.loggedIn = true;
             },
             error => console.error('Error during login: ', error));
     }
@@ -44,7 +45,7 @@ export class GlobalService {
         return this.http.post<any>(this.baseURL + '/user/register', user, options).subscribe(
             token => {
                 this.token = token.login;
-                console.log(token);
+                this.loggedIn = true;
             },
             error => console.error('Error during login: ', error));
     }
