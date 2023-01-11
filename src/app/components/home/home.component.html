@@ -1,0 +1,19 @@
+<div class="container">
+<form action="#" class="authorisationForm" *ngIf="!registration">
+    <input type="text" placeholder="Your login">
+    <input type="text" placeholder="Your password">
+    <div class="button_container">
+        <button (click)="registrationOpen($event)">Registration</button>
+        <button (click)="logIn($event)">Log in</button>
+    <button>View Mode</button>
+    </div>
+</form>
+<form action="#" class="registrationForm" *ngIf="registration">
+    <input type="text" placeholder="Your Name">
+    <input type="text" placeholder="Your Adress">
+    <input type="text" placeholder="Your login">
+    <input type="text" placeholder="Your password">
+        <button class="registrationButton">Submit</button>
+</form>
+</div>
+
