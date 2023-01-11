@@ -19,11 +19,10 @@ export class HomeComponent implements OnInit {
 
     logIn(e:any){
         e.preventDefault();
-        console.log(this.globalService.doLogin("Name", "pass"));
+        // console.log(this.globalService.doLogin("Name", "pass"));
     
 
     }
-
     ngOnInit(): void {
 
     }
