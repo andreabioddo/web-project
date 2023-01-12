@@ -8,8 +8,8 @@ import { MovieDetailComponent } from './components/movie-detail/movie-detail.com
 
 const routes: Routes = [{ path: '', component: HomeComponent },
 { path: 'poster', component: PosterComponent },
-{ path: 'overview', component: OverviewComponent, canActivate: [LoginActivate] },
-{ path: 'movie/:id', component: MovieDetailComponent, canActivate: [LoginActivate] }];
+{ path: 'overview', component: OverviewComponent, /*canActivate: [LoginActivate]*/ },
+{ path: 'movie/:id', component: MovieDetailComponent, /*canActivate: [LoginActivate]*/ }];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

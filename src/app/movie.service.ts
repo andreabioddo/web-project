@@ -18,4 +18,7 @@ export class MovieService {
   getShows(movieId: string) {
     return this.http.get<any>(this.globalService.baseURL + '/movie/show/' + movieId)
   }
+  getSeats(theaterId: number) {
+    return this.http.get<any>(this.globalService.baseURL + '/theater/seats/' + theaterId)
+  }
 }
