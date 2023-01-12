@@ -8,11 +8,10 @@ import { PosterComponent } from './components/poster/poster.component';
 import { FilmIconComponent } from './components/film-icon/film-icon.component';
 import { GlobalService } from './global.service';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginActivate } from './login-activate';
 import { OverviewComponent } from './components/overview/overview.component';
 import { MovieDetailComponent } from './components/movie-detail/movie-detail.component';
-
 
 @NgModule({
   declarations: [
@@ -27,7 +26,8 @@ import { MovieDetailComponent } from './components/movie-detail/movie-detail.com
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [GlobalService, LoginActivate],
   bootstrap: [AppComponent]

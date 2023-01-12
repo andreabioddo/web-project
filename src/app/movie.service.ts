@@ -12,7 +12,10 @@ export class MovieService {
   getMovies() {
     return this.http.get<Movie[]>(this.globalService.baseURL + '/movie');
   }
-  getMovie(id: string) {
-    return this.http.get<Movie>(this.globalService.baseURL + '/movie/' + id);
+  getMovie(movieId: string) {
+    return this.http.get<Movie>(this.globalService.baseURL + '/movie/' + movieId);
+  }
+  getShows(movieId: string) {
+    return this.http.get<any>(this.globalService.baseURL + '/movie/show/' + movieId)
   }
 }

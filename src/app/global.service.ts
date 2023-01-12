@@ -23,7 +23,6 @@ export class GlobalService {
             email: email,
             password: password
         }
-        console.log(user);
         return this.http.post<any>(this.baseURL + '/login', user, options).subscribe(
             token => {
                 this.token = token.login;
