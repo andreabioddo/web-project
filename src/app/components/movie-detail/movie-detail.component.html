@@ -11,12 +11,19 @@
     </option>
 </select>
 
-<h4>Available seats:</h4>
-<div class="">
+<h4>Seating plan:</h4>
+<span>Occupied seats</span>
+<div class="occupied-seat seat"></div>
+<div></div>
+<span>Available seats</span>
+<div class="available-seat seat"></div>
+
+<div>
     <div class="grid d-flex justify-content-center" *ngFor="let row of seats">
-        <a href="#" *ngFor="let seat of row">
-            <div title="Reserve this seat!" class="seat"></div>
-        </a>
+        <div *ngFor="let seat of row">
+            <div title="This seat is already taken!" class="occupied-seat seat text-light text-center pb-4" *ngIf="seat.occupied">{{seat.seatNumber}}</div>
+            <a routerLink="/movie/{{selectedShow.showId}}/ticket/{{seat.id}}" *ngIf="!seat.occupied"><div title="Reserve this seat!" class="available-seat seat text-light text-center pb-4">{{seat.seatNumber}}</div> </a>
+        </div>
     </div>
 </div>
 <h4>Ratings:</h4>

@@ -13,7 +13,7 @@ import { RatingService } from 'src/app/rating.service';
     styleUrls: ['./movie-detail.component.scss']
 })
 export class MovieDetailComponent implements OnInit {
-    private id: string;
+    public id: string;
     public movie!: Movie;
     public shows: Show[] = [];
     public seats: Seat[][] = [];
@@ -56,17 +56,31 @@ export class MovieDetailComponent implements OnInit {
     }
     onChange() {
         console.log(this.selectedShow);
-        this.movieService.getSeats(this.selectedShow.theaterId).subscribe(
+        this.movieService.getSeats(this.selectedShow.showId.toString()).subscribe(
             seats => {
+                console.log(seats);
                 let seats1D: Seat[] = [];
-                for (let seat of seats) {
+                for (let seat of seats.avaiable_seats) {
                     let newSeat: Seat = {
                         id: seat.id,
                         seatNumber: seat.number,
                         theaterId: seat.id_theater,
                         removable: seat.removable,
                         row: seat.row,
-                        type: seat.type
+                        type: seat.type,
+                        occupied: false
+                    }
+                    seats1D.push(newSeat);
+                }
+                for (let seat of seats.occupied_seats) {
+                    let newSeat: Seat = {
+                        id: seat.id,
+                        seatNumber: seat.number,
+                        theaterId: seat.id_theater,
+                        removable: seat.removable,
+                        row: seat.row,
+                        type: seat.type,
+                        occupied: true
                     }
                     seats1D.push(newSeat);
                 }
@@ -75,7 +89,12 @@ export class MovieDetailComponent implements OnInit {
                     a[c.row].push(c);
                     return a;
                 }, {});
-                this.seats = Object.keys(reduceTo2D).map((k) => reduceTo2D[k])
+                this.seats = Object.keys(reduceTo2D).map((k) => reduceTo2D[k]);
+
+                for(let i = 0; i < this.seats.length; i++)
+                {
+                    this.seats[i] = this.seats[i].sort((a: Seat, b: Seat) => a.seatNumber - b.seatNumber);
+                }
             }
         );
     }

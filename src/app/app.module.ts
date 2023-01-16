@@ -13,6 +13,7 @@ import { LoginActivate } from './login-activate';
 import { OverviewComponent } from './components/overview/overview.component';
 import { MovieDetailComponent } from './components/movie-detail/movie-detail.component';
 import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
+import { TicketComponent } from './components/ticket/ticket.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
     PosterComponent,
     FilmIconComponent,
     OverviewComponent,
-    MovieDetailComponent
+    MovieDetailComponent,
+    TicketComponent
   ],
   imports: [
     BrowserModule,

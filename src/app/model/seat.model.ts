@@ -5,4 +5,5 @@ export class Seat {
     removable!: boolean;
     row!:number;
     type!:string;
+    occupied!: boolean;
 }

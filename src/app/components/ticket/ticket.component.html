@@ -1,0 +1,44 @@
+<h4>Seating plan:</h4>
+<span>Occupied seats</span>
+<div class="occupied-seat seat"></div>
+<div></div>
+<span>Available seats</span>
+<div class="available-seat seat"></div>
+<div></div>
+<span>Selected seat</span>
+<div class="selected-seat seat"></div>
+<div>
+    <div class="grid d-flex justify-content-center" *ngFor="let row of seats">
+        <div *ngFor="let seat of row">
+            <div class="occupied-seat seat text-light text-center pb-4" *ngIf="seat.occupied && !isSelectedSeat(seat)">
+                {{seat.seatNumber}}</div>
+            <div class="available-seat seat text-light text-center pb-4"
+                *ngIf="!seat.occupied && !isSelectedSeat(seat)">
+                {{seat.seatNumber}}</div>
+            <div class="selected-seat seat text-light text-center pb-4" *ngIf="isSelectedSeat(seat)">
+                {{seat.seatNumber}}</div>
+        </div>
+    </div>
+</div>
+<br>
+<div class="text-center">
+    <h5>Are you sure you would like to buy this seat?</h5>
+    <div>
+        <button (click)="reserveSeat()" [disabled]="disableReserveButton" class="btn btn-primary">Reserve this
+            seat!</button>
+    </div>
+</div>
+<br>
+<div *ngIf="showOtherOptionsSection" class="container text-center">
+    <div class="row">
+        <div class="col-4"></div>
+        <div *ngIf="reservationSuccessful" class="col-4">
+            <div class="p-3 mb-2 bg-success text-white">Reservation was successful!</div>
+            <p><a routerLink="/overview" class="text-primary">Back to the overview</a></p>
+        </div>
+        <div *ngIf="!reservationSuccessful">
+            <div class="p-3 mb-2 bg-danger text-white">Something went wrong!</div>
+            <p><a routerLink="/overview" class="text-primary">Pick a different seat</a></p>
+        </div>
+    </div>
+</div>

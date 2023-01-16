@@ -2,3 +2,23 @@
 
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
+
+.seat {
+    width: 20px;
+    height: 20px;
+    margin: 2px;
+    float: left;
+    overflow: hidden;
+}
+
+.occupied-seat {
+    background: rgba(255, 0, 0, 0.779);
+}
+
+.available-seat {
+    background: rgb(85, 85, 85);
+}
+
+.selected-seat {
+    background: green;
+}
