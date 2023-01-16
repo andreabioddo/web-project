@@ -1,61 +1,73 @@
-<h2>Name: {{movie.name}}</h2>
-<p class="text-muted">Description: {{movie.description}}</p>
-<p class="text-muted">Age: {{movie.age}}</p>
-<p class="text-muted">Duration: {{movie.duration}}</p>
+<div class="container">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <h2>Name: {{movie.name}}</h2>
+            <p class="text-muted">Description: {{movie.description}}</p>
+            <p class="text-muted">Age: {{movie.age}}</p>
+            <p class="text-muted">Duration: {{movie.duration}}</p>
 
-<h4>When are we playing the movie:</h4>
-<label for="show"> Select date and place </label>
-<select id="show" class="form-select" name="show" [(ngModel)]="selectedShow" (ngModelChange)="onChange()">
-    <option *ngFor="let show of shows" [ngValue]="show">
-        {{show.theaterName}}, {{show.time}}
-    </option>
-</select>
+            <h4>When are we playing the movie:</h4>
+            <label for="show"> Select date and place </label>
+            <select id="show" class="form-select" name="show" [(ngModel)]="selectedShow" (ngModelChange)="onChange()">
+                <option *ngFor="let show of shows" [ngValue]="show">
+                    {{show.theaterName}}, {{show.time}}
+                </option>
+            </select>
 
-<h4>Seating plan:</h4>
-<span>Occupied seats</span>
-<div class="occupied-seat seat"></div>
-<div></div>
-<span>Available seats</span>
-<div class="available-seat seat"></div>
+            <h4>Seating plan:</h4>
+            <span>Occupied seats</span>
+            <div class="occupied-seat seat"></div>
+            <div></div>
+            <span>Available seats</span>
+            <div class="available-seat seat"></div>
 
-<div>
-    <div class="grid d-flex justify-content-center" *ngFor="let row of seats">
-        <div *ngFor="let seat of row">
-            <div title="This seat is already taken!" class="occupied-seat seat text-light text-center pb-4" *ngIf="seat.occupied">{{seat.seatNumber}}</div>
-            <a routerLink="/movie/{{selectedShow.showId}}/ticket/{{seat.id}}" *ngIf="!seat.occupied"><div title="Reserve this seat!" class="available-seat seat text-light text-center pb-4">{{seat.seatNumber}}</div> </a>
-        </div>
-    </div>
-</div>
-<h4>Ratings:</h4>
-<div class="row mt-5">
-    <div class="col-2"></div>
-    <div class="col-8">
-        <div *ngFor="let item of ratings">
-            <div class="row text-center text-white bg-secondary mt-1">
-                <ngb-rating [(rate)]="item.stars" [max]="5"></ngb-rating>
-                <div>{{item.review}}</div>
-                <div>{{item.userId}}</div>
+            <div>
+                <div class="grid d-flex justify-content-center" *ngFor="let row of seats">
+                    <div *ngFor="let seat of row">
+                        <div title="This seat is already taken!" class="occupied-seat seat text-light text-center pb-4"
+                            *ngIf="seat.occupied">{{seat.seatNumber}}</div>
+                        <a routerLink="/movie/{{selectedShow.showId}}/ticket/{{seat.id}}" *ngIf="!seat.occupied">
+                            <div title="Reserve this seat!" class="available-seat seat text-light text-center pb-4">
+                                {{seat.seatNumber}}</div>
+                        </a>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-</div>
-
-<div class="container mt-5">
-    <div class="container mx-5">
-        <div class="row">
-            <div class="col-3">
-                <form #addratingForm="ngForm">
-                    Add rating: <input name="rating" id="rating" class="form-control input-lg" type="text"
-                        placeholder="Enter rating" [(ngModel)]="ratingInput">
-                    Number of stars (1 to 5): <input name="rating" id="rating" class="form-control input-lg"
-                        type="number" placeholder="Enter number of stars" min="1" max="5" [(ngModel)]="starsInput">
-                    <button type="submit" class="btn btn-secondary mt-1" (click)="addRating()"
-                        [disabled]="addratingForm.invalid">Add rating</button>
-
-                </form>
-
+            <h4>Ratings:</h4>
+            <div class="row mt-5">
+                <div class="col-2"></div>
+                <div class="col-8">
+                    <div *ngFor="let item of ratings">
+                        <div class="row text-center text-white bg-secondary mt-1">
+                            <ngb-rating [(rate)]="item.stars" [max]="5"></ngb-rating>
+                            <div>{{item.review}}</div>
+                            <div>{{item.userId}}</div>
+                        </div>
+                    </div>
+                </div>
             </div>
+
+            <div class="container mt-5">
+                <div class="container mx-5">
+                    <div class="row">
+                        <div class="col-3">
+                            <form #addratingForm="ngForm">
+                                Add rating: <input name="rating" id="rating" class="form-control input-lg" type="text"
+                                    placeholder="Enter rating" [(ngModel)]="ratingInput">
+                                Number of stars (1 to 5): <input name="rating" id="rating" class="form-control input-lg"
+                                    type="number" placeholder="Enter number of stars" min="1" max="5"
+                                    [(ngModel)]="starsInput">
+                                <button type="submit" class="btn btn-secondary mt-1" (click)="addRating()"
+                                    [disabled]="addratingForm.invalid">Add rating</button>
+
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-5"></div>
         </div>
     </div>
 </div>
-<div class="mb-5"></div>

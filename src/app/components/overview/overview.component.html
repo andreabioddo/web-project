@@ -1,9 +1,16 @@
-<ul class="list-group  list-group-flush">
-    <li class="list-group-item" *ngFor="let item of results">
-        <h2>Name: {{item.name}}</h2>
-        <p class="text-muted">Description: {{item.description}}</p>
-        <p class="text-muted">Age: {{item.age}}</p>
-        <p class="text-muted">Duration: {{item.duration}}</p>
-        <button routerLink="/movie/{{item.id}}" class="btn btn-primary">Buy Tickets & See Reviews</button>
-    </li>
-</ul>
+<div class="container">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <ul class="list-group  list-group-flush">
+                <li class="list-group-item" *ngFor="let item of results">
+                    <h2>Name: {{item.name}}</h2>
+                    <p class="text-muted">Description: {{item.description}}</p>
+                    <p class="text-muted">Age: {{item.age}}</p>
+                    <p class="text-muted">Duration: {{item.duration}}</p>
+                    <button routerLink="/movie/{{item.id}}" class="btn btn-primary">Buy Tickets & See Reviews</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

@@ -14,6 +14,7 @@ import { OverviewComponent } from './components/overview/overview.component';
 import { MovieDetailComponent } from './components/movie-detail/movie-detail.component';
 import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 import { TicketComponent } from './components/ticket/ticket.component';
+import { UserManagerComponent } from './components/user-manager/user-manager.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { TicketComponent } from './components/ticket/ticket.component';
     FilmIconComponent,
     OverviewComponent,
     MovieDetailComponent,
-    TicketComponent
+    TicketComponent,
+    UserManagerComponent
   ],
   imports: [
     BrowserModule,
