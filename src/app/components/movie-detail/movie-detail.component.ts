@@ -4,6 +4,8 @@ import { Movie } from 'src/app/model/movie.model';
 import { Seat } from 'src/app/model/seat.model';
 import { Show } from 'src/app/model/show.model';
 import { MovieService } from 'src/app/movie.service';
+import { Rating } from 'src/app/model/rating.model';
+import { RatingService } from 'src/app/rating.service';
 
 @Component({
     selector: 'app-movie-detail',
@@ -17,9 +19,14 @@ export class MovieDetailComponent implements OnInit {
     public seats: Seat[][] = [];
     public selectedShow!: Show;
     public math: any;
+    public ratings: Rating[] = [];
+    public ratingInput!: string;
+    public starsInput!: number;
+
     constructor(
         private route: ActivatedRoute,
-        private movieService: MovieService
+        private movieService: MovieService,
+        private ratingService: RatingService
     ) {
         this.math = Math;
         this.id = this.route.snapshot.params['id'];
@@ -41,6 +48,11 @@ export class MovieDetailComponent implements OnInit {
                 }
             }
         );
+        this.ratingService.getRatings(this.id).subscribe(
+            ratings => {
+                this.ratings = ratings;
+            }
+        )
     }
     onChange() {
         console.log(this.selectedShow);
@@ -66,6 +78,17 @@ export class MovieDetailComponent implements OnInit {
                 this.seats = Object.keys(reduceTo2D).map((k) => reduceTo2D[k])
             }
         );
+    }
+
+    addRating() {
+        let rating: Rating = {
+            review: this.ratingInput,
+            userId: 0,
+            movieId: this.id,
+            stars: this.starsInput
+        };
+
+        this.ratingService.addRating(rating).subscribe(c => this.ratings.push(rating));
     }
 
     ngOnInit(): void {

@@ -12,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginActivate } from './login-activate';
 import { OverviewComponent } from './components/overview/overview.component';
 import { MovieDetailComponent } from './components/movie-detail/movie-detail.component';
+import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { MovieDetailComponent } from './components/movie-detail/movie-detail.com
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbRatingModule
   ],
   providers: [GlobalService, LoginActivate],
   bootstrap: [AppComponent]
