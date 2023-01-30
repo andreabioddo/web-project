@@ -15,6 +15,7 @@ import { MovieDetailComponent } from './components/movie-detail/movie-detail.com
 import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 import { TicketComponent } from './components/ticket/ticket.component';
 import { UserManagerComponent } from './components/user-manager/user-manager.component';
+import { NavbarLayoutComponent } from './components/navbar-layout/navbar-layout.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { UserManagerComponent } from './components/user-manager/user-manager.com
     OverviewComponent,
     MovieDetailComponent,
     TicketComponent,
-    UserManagerComponent
+    UserManagerComponent,
+    NavbarLayoutComponent
   ],
   imports: [
     BrowserModule,
