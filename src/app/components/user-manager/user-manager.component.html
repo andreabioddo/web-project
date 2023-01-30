@@ -1,1 +1,20 @@
-<p>user-manager works!</p>
+<div class="container">
+    <h1 class="text-center">Manage Account & Tickets</h1>
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <ul class="list-group  list-group-flush">
+                <li class="list-group-item" *ngFor="let item of tickets; index as i">
+                    <h2>Movie Name: {{item.movieName}}</h2>
+                    <p class="text-muted">Price: {{item.price}} Euro</p>
+                    <p class="text-muted">Time: {{item.time}}</p>
+                    <p class="text-muted">Theater: {{item.theater}}</p>
+                    <p class="text-muted">Seat: {{item.seat}}</p>
+                    <button (click)="requestQR($event, i)" class="btn btn-primary mx-2">Get QR code!</button>
+                    <button (click)="returnTicket($event, i)" class="btn btn-primary"
+                        [disabled]="isNonreturnable(item)">Return Ticket</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
