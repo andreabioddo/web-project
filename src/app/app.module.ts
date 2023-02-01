@@ -16,6 +16,7 @@ import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 import { TicketComponent } from './components/ticket/ticket.component';
 import { UserManagerComponent } from './components/user-manager/user-manager.component';
 import { NavbarLayoutComponent } from './components/navbar-layout/navbar-layout.component';
+import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { NavbarLayoutComponent } from './components/navbar-layout/navbar-layout.
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    NgbRatingModule
+    NgbRatingModule,
+    NgxQRCodeModule
   ],
   providers: [GlobalService, LoginActivate],
   bootstrap: [AppComponent]

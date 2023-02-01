@@ -1,3 +1,16 @@
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <ngx-qrcode [elementType]="elementType" [errorCorrectionLevel]="correctionLevel" [value]="value"
+            cssClass="bshadow"></ngx-qrcode>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+    </div>
+</ng-template>
 <div class="container">
     <h1 class="text-center">Manage Account & Tickets</h1>
     <div class="row">
@@ -10,7 +23,7 @@
                     <p class="text-muted">Time: {{item.time}}</p>
                     <p class="text-muted">Theater: {{item.theater}}</p>
                     <p class="text-muted">Seat: {{item.seat}}</p>
-                    <button (click)="requestQR($event, i)" class="btn btn-primary mx-2">Get QR code!</button>
+                    <button (click)="openQR(content, i)" class="btn btn-primary mx-2">Get QR code!</button>
                     <button (click)="returnTicket($event, i)" class="btn btn-primary"
                         [disabled]="isNonreturnable(item)">Return Ticket</button>
                 </li>
