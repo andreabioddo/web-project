@@ -1,0 +1,32 @@
+<div class="container">
+  <button class="addCinemaButton" (click)="openAddCinemaDialog('create')">Add new Cinema +</button>
+  <dialog #dialog>
+    <form action="#" name="myForm" #createTheaterform>
+      <button (click)="closeDialog()">Close</button>
+      <input type="number" placeholder="ID" [(ngModel)]="newTheaterID" name="newTheaterID">
+      <input type="text" placeholder="NAME" [(ngModel)]="newTheaterName" name="newTheaterName">
+      <input type="number" placeholder="Quantity of seats" [(ngModel)]="numberOfSeats" name="newTheaterNumberOfSeats">
+      <div class="checkBoxContainer">
+        <label for="3D">3D</label>
+        <input type="checkbox" name="3D" (click)="set3D()">
+        <label for="4D">4D</label>
+        <input type="checkbox" name="4D" (click)="set4D()">
+        <label for="dolby">Dolby Atmos</label>
+        <input type="checkbox" name="dolby" (click)="setDolby()">
+      </div>
+      <input type="submit" value="Create" (click)="createTheater($event)">
+    </form>
+  </dialog>
+  <div class="theatersContainer">
+    <div class="theater" *ngFor="let theater of theatersList">
+        <p>ID : {{theater.id}}</p>
+        <p>Name : {{theater.name}}</p>
+        <p>Number of seats : {{theater.numberOfSeats}}</p>
+        <p>3D : {{isFeatureAvaliable(theater.listOfFeatures,'3D')}}</p>
+        <p>4D : {{isFeatureAvaliable(theater.listOfFeatures,'4D')}}</p>
+        <p>Dolby Atmos : {{isFeatureAvaliable(theater.listOfFeatures,'Dolby Atmos')}}</p>
+        <button (click)="openAddCinemaDialog('update',theater)">Update</button>
+        <button (click)="deleteTheater(theater)">Delete</button>
+      </div>
+  </div>
+</div>

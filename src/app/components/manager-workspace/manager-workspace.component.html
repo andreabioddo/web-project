@@ -1,0 +1,9 @@
+<div class="container">
+    <div class="navigationBar" *ngIf="!navBarclicked">
+        <div class="navElem theatersNav" (click)="navigate('theaters')"><p class="navText">Theatres</p></div>
+        <div class="navElem movieNav">  <p class="navText">Movies      </p></div>
+        <div class="navElem sheduleNav"><p class="navText">Shedule     </p></div>
+        <div class="navElem ticketsNav"><p class="navText">Sell Tickets</p></div>
+    </div>
+    <router-outlet></router-outlet>
+</div> 

@@ -15,7 +15,9 @@ import { MovieDetailComponent } from './components/movie-detail/movie-detail.com
 import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 import { TicketComponent } from './components/ticket/ticket.component';
 import { UserManagerComponent } from './components/user-manager/user-manager.component';
-
+import { ManagerWorkspaceComponent } from './components/manager-workspace/manager-workspace.component';
+import { TheatersControlComponent } from './components/manager-workspace/managerComponents/theaters-control/theaters-control.component';
+// import {MatDialogModule} from '@angular/material/dialog';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +27,9 @@ import { UserManagerComponent } from './components/user-manager/user-manager.com
     OverviewComponent,
     MovieDetailComponent,
     TicketComponent,
-    UserManagerComponent
+    UserManagerComponent,
+    ManagerWorkspaceComponent,
+    TheatersControlComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +37,7 @@ import { UserManagerComponent } from './components/user-manager/user-manager.com
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    NgbRatingModule
+    NgbRatingModule,
   ],
   providers: [GlobalService, LoginActivate],
   bootstrap: [AppComponent]
