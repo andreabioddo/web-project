@@ -7,6 +7,7 @@ import { OverviewComponent } from './components/overview/overview.component';
 import { MovieDetailComponent } from './components/movie-detail/movie-detail.component';
 import { TicketComponent } from './components/ticket/ticket.component';
 import { UserManagerComponent } from './components/user-manager/user-manager.component';
+import { NavbarLayoutComponent } from './components/navbar-layout/navbar-layout.component';
 import { ManagerWorkspaceComponent } from './components/manager-workspace/manager-workspace.component';
 import { TheatersControlComponent } from './components/manager-workspace/managerComponents/theaters-control/theaters-control.component';
 
