@@ -14,14 +14,10 @@ export class RatingService {
     return this.http.get<Rating[]>(AppSettings.API_ENDPOINT + "/review/" + movieId);
   }
   addRating(rating: Rating) {
-    //return of(true);
-
-    // TODO: When the backend will be implemented, do something like this:
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': this.cookieService.get("AuthToken")
     });
-    console.log(this.cookieService.get("AuthToken"));
     const options = {
       headers
     };

@@ -65,25 +65,28 @@ export class TicketComponent implements OnInit {
     }
     reserveSeat() {
         this.disableReserveButton = true;
-        this.movieService.reserveSeat(this.seatId).subscribe(
-            reservationSuccessful => {
+        this.movieService.reserveSeat(this.seatId, this.showId).subscribe(
+            success => {
+                console.log("we are here")
                 this.showOtherOptionsSection = true;
-                if (reservationSuccessful) {
-                    this.reservationSuccessful = true;
-                }
-                else {
-                    this.reservationSuccessful = false;
-                }
+                this.reservationSuccessful = true;
+            },
+            error => {
+                console.log("we are here2")
+                console.log(error)
+
+                this.showOtherOptionsSection = true;
+                this.reservationSuccessful = false;
             }
         )
-    }
+}
 
-    isSelectedSeat(seat: Seat) {
-        if(seat.id.toString() === this.seatId)
-            return true;
-        return false;
-    }
-    ngOnInit(): void {
-    }
+isSelectedSeat(seat: Seat) {
+    if (seat.id.toString() === this.seatId)
+        return true;
+    return false;
+}
+ngOnInit(): void {
+}
 
 }
