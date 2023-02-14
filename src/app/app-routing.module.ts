@@ -13,13 +13,20 @@ import { TheatersControlComponent } from './components/manager-workspace/manager
 
 const routes: Routes = [{ path: '', component: HomeComponent },
 { path: 'poster', component: PosterComponent },
-{ path: 'overview', component: OverviewComponent, /*canActivate: [LoginActivate]*/ },
-{ path: 'movie/:id', component: MovieDetailComponent, /*canActivate: [LoginActivate]*/ },
-{ path: 'movie/:showId/ticket/:seatId', component: TicketComponent, /*canActivate: [LoginActivate]*/ },
-{ path: 'manage', component: UserManagerComponent, /*canActivate: [LoginActivate]*/ },
-{ path: 'manager', component: ManagerWorkspaceComponent,children:[
-  { path: 'theaters', component: TheatersControlComponent }, 
-] /*canActivate: [LoginActivate]*/ }
+{
+  path: '',
+  component: NavbarLayoutComponent,
+  children: [
+    { path: 'overview', component: OverviewComponent, /*canActivate: [LoginActivate]*/ },
+    { path: 'movie/:id', component: MovieDetailComponent, /*canActivate: [LoginActivate]*/ },
+    { path: 'movie/:showId/ticket/:seatId', component: TicketComponent, /*canActivate: [LoginActivate]*/ },
+    { path: 'manage', component: UserManagerComponent, /*canActivate: [LoginActivate]*/ }]
+},
+{
+  path: 'manager', component: ManagerWorkspaceComponent, children: [
+    { path: 'theaters', component: TheatersControlComponent },
+  ] /*canActivate: [LoginActivate]*/
+}
 ];
 
 
