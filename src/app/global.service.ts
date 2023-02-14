@@ -2,12 +2,14 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { User } from "./model/user"
 import { AppSettings } from "./app-settings";
+import { CookieService } from 'ngx-cookie-service';
+
 @Injectable()
 export class GlobalService {
 
     private token: string = '';
     public loggedIn = false;
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient, private cookieService: CookieService) { }
 
     doLogin(email: string, password: string) {
         const headers = new HttpHeaders({
@@ -25,6 +27,7 @@ export class GlobalService {
         }
         return this.http.post<any>(AppSettings.API_ENDPOINT + '/login', user, options).subscribe(
             token => {
+                this.cookieService.set('AuthToken', token.login);
                 this.token = token.login;
                 this.loggedIn = true;
             },
@@ -43,6 +46,7 @@ export class GlobalService {
         console.log(user);
         return this.http.post<any>(AppSettings.API_ENDPOINT + '/user/register', user, options).subscribe(
             token => {
+                this.cookieService.set('AuthToken', token.login);
                 this.token = token.login;
                 this.loggedIn = true;
             },

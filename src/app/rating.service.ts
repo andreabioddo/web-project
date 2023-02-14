@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from '@angular/core';
-import { of } from 'rxjs/internal/observable/of';
 import { AppSettings } from './app-settings';
+import { CookieService } from 'ngx-cookie-service';
 import { Rating } from './model/rating.model';
 
 @Injectable({
@@ -9,39 +9,27 @@ import { Rating } from './model/rating.model';
 })
 export class RatingService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private cookieService: CookieService) { }
   getRatings(movieId: string) {
-    let ratings : Rating[] = [
-      {
-        stars: 3,
-        review: "Pretty good",
-        userId: 1,
-        movieId: movieId
-      },
-      {
-        stars: 4,
-        review: "Awesome!",
-        userId: 1,
-        movieId: movieId
-      }
-    ]
-    return of(ratings);
-
-    // TODO: When the backend will be implemented, do something like this:
-    // return this.http.get<Rating>(AppSettings.API_ENDPOINT + REVIEW_ENDPOINT);
+    return this.http.get<Rating[]>(AppSettings.API_ENDPOINT + "/review/" + movieId);
   }
   addRating(rating: Rating) {
-    return of(true);
+    //return of(true);
 
     // TODO: When the backend will be implemented, do something like this:
-    // const headers = new HttpHeaders({
-    //   'Content-Type': 'application/json',
-    //   // maybe needed for future: 'Authorization': 'Basic YW5ndWxhcjphbmd1bGFy'
-    // });
-    // const options = {
-    //   headers
-    // };
-    // return this.http.post<Rating>(AppSettings.API_ENDPOINT + REVIEW_ENDPOINT, post, options);
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': this.cookieService.get("AuthToken")
+    });
+    console.log(this.cookieService.get("AuthToken"));
+    const options = {
+      headers
+    };
+    let ratingNettworkWrapper = {
+      stars: rating.stars,
+      review: rating.review
+    }
+    return this.http.post<Rating>(AppSettings.API_ENDPOINT + "/review/" + rating.movieId + "/add", ratingNettworkWrapper, options);
 
   }
 }

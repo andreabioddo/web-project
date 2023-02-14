@@ -3,4 +3,5 @@ export class Rating {
     review!: string;
     userId!: number;
     movieId!: string;
+    name!: string;
 }

@@ -20,6 +20,7 @@ export class UserManagerComponent implements OnInit {
     private modalService: NgbModal) {
     this.ticketService.getTickets().subscribe(
       (results: Ticket[]) => {
+        console.log(results);
         this.tickets = results;
       });
   }

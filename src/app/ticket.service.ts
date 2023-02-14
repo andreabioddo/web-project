@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs/internal/observable/of';
 import { Ticket } from './model/ticket.model';
+import { HttpClient } from '@angular/common/http';
+import { AppSettings } from './app-settings';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class TicketService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
   getTickets() {
     let today = new Date();
     let tickets: Ticket[] = [
@@ -27,8 +30,7 @@ export class TicketService {
       }
     ]
     return of(tickets);
-
-    // return this.http.get<any>(AppSettings.API_ENDPOINT + '/movie/detailseats/' + showId)
+    // return this.http.get<any>(AppSettings.API_ENDPOINT + '/ticket/ofuser/');
   }
   returnTicket(ticket: Ticket) {
     let rand: boolean = Math.random() < 0.5;

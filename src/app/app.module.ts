@@ -20,7 +20,7 @@ import { TheatersControlComponent } from './components/manager-workspace/manager
 // import {MatDialogModule} from '@angular/material/dialog';
 import { NavbarLayoutComponent } from './components/navbar-layout/navbar-layout.component';
 import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
-
+import { CookieService } from 'ngx-cookie-service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +44,7 @@ import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
     NgbRatingModule,
     NgxQRCodeModule
   ],
-  providers: [GlobalService, LoginActivate],
+  providers: [GlobalService, LoginActivate, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -91,8 +91,7 @@ export class MovieDetailComponent implements OnInit {
                 }, {});
                 this.seats = Object.keys(reduceTo2D).map((k) => reduceTo2D[k]);
 
-                for(let i = 0; i < this.seats.length; i++)
-                {
+                for (let i = 0; i < this.seats.length; i++) {
                     this.seats[i] = this.seats[i].sort((a: Seat, b: Seat) => a.seatNumber - b.seatNumber);
                 }
             }
@@ -104,10 +103,15 @@ export class MovieDetailComponent implements OnInit {
             review: this.ratingInput,
             userId: 0,
             movieId: this.id,
-            stars: this.starsInput
+            stars: this.starsInput,
+            name: ""
         };
 
-        this.ratingService.addRating(rating).subscribe(c => this.ratings.push(rating));
+        this.ratingService.addRating(rating).subscribe(c => {
+            console.log(c);
+            this.ratings.push(rating);
+        }
+        );
     }
 
     ngOnInit(): void {
