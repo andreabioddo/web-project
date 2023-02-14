@@ -67,12 +67,10 @@ export class TicketComponent implements OnInit {
         this.disableReserveButton = true;
         this.movieService.reserveSeat(this.seatId, this.showId).subscribe(
             success => {
-                console.log("we are here")
                 this.showOtherOptionsSection = true;
                 this.reservationSuccessful = true;
             },
             error => {
-                console.log("we are here2")
                 console.log(error)
 
                 this.showOtherOptionsSection = true;

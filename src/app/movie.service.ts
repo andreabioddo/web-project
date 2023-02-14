@@ -13,7 +13,6 @@ export class MovieService {
     const headers = new HttpHeaders({
       'Authorization': this.cookieService.get("AuthToken")
     });
-    console.log(this.cookieService.get("AuthToken"));
     const options = {
       headers
     };

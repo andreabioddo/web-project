@@ -1,17 +1,18 @@
 import { Injectable } from "@angular/core";
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from "@angular/router";
 import { Observable } from "rxjs";
-import { GlobalService } from "./global.service";
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable()
 export class LoginActivate implements CanActivate {
-  constructor(private globalService: GlobalService, private router: Router) {}
+  constructor(private cookieService: CookieService, private router: Router) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean>|Promise<boolean>|boolean {
-    if (!this.globalService.loggedIn) {
+    if(!this.cookieService.check("AuthToken")) 
+    {
       this.router.navigate(['/']);
     }
     return true;

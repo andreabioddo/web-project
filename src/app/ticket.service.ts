@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { of } from 'rxjs/internal/observable/of';
 import { Ticket } from './model/ticket.model';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { AppSettings } from './app-settings';

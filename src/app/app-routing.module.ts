@@ -17,10 +17,10 @@ const routes: Routes = [{ path: '', component: HomeComponent },
   path: '',
   component: NavbarLayoutComponent,
   children: [
-    { path: 'overview', component: OverviewComponent, /*canActivate: [LoginActivate]*/ },
-    { path: 'movie/:id', component: MovieDetailComponent, /*canActivate: [LoginActivate]*/ },
-    { path: 'movie/:showId/ticket/:seatId', component: TicketComponent, /*canActivate: [LoginActivate]*/ },
-    { path: 'manage', component: UserManagerComponent, /*canActivate: [LoginActivate]*/ }]
+    { path: 'overview', component: OverviewComponent, canActivate: [LoginActivate] },
+    { path: 'movie/:id', component: MovieDetailComponent, canActivate: [LoginActivate] },
+    { path: 'movie/:showId/ticket/:seatId', component: TicketComponent, canActivate: [LoginActivate] },
+    { path: 'manage', component: UserManagerComponent, canActivate: [LoginActivate] }]
 },
 {
   path: 'manager', component: ManagerWorkspaceComponent, children: [

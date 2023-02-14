@@ -27,7 +27,7 @@ export class GlobalService {
         }
         return this.http.post<any>(AppSettings.API_ENDPOINT + '/login', user, options).subscribe(
             token => {
-                this.cookieService.set('AuthToken', token.login);
+                this.cookieService.set('AuthToken', token.login, { expires: new Date(new Date().getTime() +  1000 * 60 * 60) });
                 this.token = token.login;
                 this.loggedIn = true;
             },
@@ -46,7 +46,7 @@ export class GlobalService {
         console.log(user);
         return this.http.post<any>(AppSettings.API_ENDPOINT + '/user/register', user, options).subscribe(
             token => {
-                this.cookieService.set('AuthToken', token.login);
+                this.cookieService.set('AuthToken', token.login, { expires: new Date(new Date().getTime() +  1000 * 60 * 60) });
                 this.token = token.login;
                 this.loggedIn = true;
             },
