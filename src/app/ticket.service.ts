@@ -30,13 +30,25 @@ export class TicketService {
 
     return this.http.get<any>(AppSettings.API_ENDPOINT + '/ticket/ofuser/', options);
   }
+
+  getTicketsAdmin() {
+    const headers = new HttpHeaders({
+      'Authorization': this.cookieService.get("AuthToken")
+    });
+    const options = {
+      headers
+    };
+
+    return this.http.get<any>(AppSettings.API_ENDPOINT + '/ticket/', options);
+  }
+
   returnTicket(ticket: Ticket) {
     let options = this.createHeader();
     return this.http.delete<any>(AppSettings.API_ENDPOINT + '/ticket/' + ticket.id, options);
   }
   addTicket(ticket: any) {
     let options = this.createHeader();
-    return this.http.post<any>(AppSettings.API_ENDPOINT + `/ticket/add`, ticket, options);
+    return this.http.post<any>(AppSettings.API_ENDPOINT + `/ticket/addadmin`, ticket, options);
   }
 
   deleteTicket(id: number) {

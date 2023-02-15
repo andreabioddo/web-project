@@ -32,7 +32,7 @@ openAddShowDialoge(){
 }
 addNewShow(){
   if(this.showDialogType=='add'){
-    let date=new Date(`2023-${this.monthOfShow}-${this.dayOfShow}`);
+    let date=new Date(`${2023}-${this.monthOfShow}-${this.dayOfShow}`);
     let time=`${this.hoursOfShow}:${this.minutesOfShow}`;
   if(this.movieShowId&&this.theaterShowId&&this.monthOfShow&&this.dayOfShow&&this.hoursOfShow&&this.minutesOfShow){
   this.showsService.addShow({id_movie:this.movieShowId,id_theater:this.theaterShowId,date:date,time:time}).subscribe(data=>{
@@ -46,7 +46,7 @@ addNewShow(){
     this.addShowDialog.nativeElement.close();
   }
   }else{
-    let date=new Date(`2023-${this.monthOfShow}-${this.dayOfShow}`);
+    let date=new Date(`${2023}-${this.monthOfShow}-${this.dayOfShow}`);
     let time=`${this.hoursOfShow}:${this.minutesOfShow}`;
   if(this.movieShowId&&this.theaterShowId&&this.monthOfShow&&this.dayOfShow&&this.hoursOfShow&&this.minutesOfShow){
   this.showsService.updateShow({id_movie:this.movieShowId,id_theater:this.theaterShowId,date:date,time:time},this.showToUpdateId).subscribe(data=>{

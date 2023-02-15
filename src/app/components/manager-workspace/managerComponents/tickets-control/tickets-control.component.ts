@@ -42,7 +42,7 @@ export class TicketsControlComponent implements OnInit {
     this.theatersService.getTheaters().subscribe((theaters:any) => {
       this.theatersList = theaters;
     });
-    this.ticketService.getTickets().subscribe((tickets:any) => {
+    this.ticketService.getTicketsAdmin().subscribe((tickets:any) => {
       this.ticketsList=tickets;
       console.log(tickets);
     });
