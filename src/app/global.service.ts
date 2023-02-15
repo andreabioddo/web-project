@@ -61,6 +61,7 @@ export class GlobalService {
                 this.cookieService.set('AuthToken', token.login, { expires: new Date(new Date().getTime() + 1000 * 60 * 60) });
                 this.token = token.login;
                 this.loggedIn = true;
+                this.router.navigate(['/overview']);
             },
             error => {console.error('Error during login: ', error)});
     }
