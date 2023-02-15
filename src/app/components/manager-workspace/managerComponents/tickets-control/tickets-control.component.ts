@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TicketsService } from 'src/app/tickets.service';
+import { TicketService } from 'src/app/ticket.service';
 import { TheatersService } from 'src/app/theaters.service';
 import { MovieService } from 'src/app/movie.service';
 import { ViewChild, ElementRef } from '@angular/core';
@@ -24,7 +24,7 @@ export class TicketsControlComponent implements OnInit {
   ticketsList!:any;
   showsList!:any;
   chosenShowId!:any;
-  constructor(private ticketService: TicketsService, private theatersService: TheatersService, private movieService: MovieService, private usersService: UsersService,private showsService:ShowsService) {
+  constructor(private ticketService: TicketService, private theatersService: TheatersService, private movieService: MovieService, private usersService: UsersService,private showsService:ShowsService) {
     
     
     this.update();

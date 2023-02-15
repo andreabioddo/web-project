@@ -9,9 +9,18 @@ import { CookieService } from 'ngx-cookie-service';
   providedIn: 'root'
 })
 export class TicketService {
+  private createHeader() {
+    const headers = new HttpHeaders({
+      'Authorization': this.cookieService.get("AuthToken")
+    });
+    const options = {
+      headers
+    };
 
+    return options;
+  }
   constructor(private http: HttpClient, private cookieService: CookieService) { }
-  getTickets() {    
+  getTickets() {
     const headers = new HttpHeaders({
       'Authorization': this.cookieService.get("AuthToken")
     });
@@ -22,15 +31,17 @@ export class TicketService {
     return this.http.get<any>(AppSettings.API_ENDPOINT + '/ticket/ofuser/', options);
   }
   returnTicket(ticket: Ticket) {
-    const headers = new HttpHeaders({
-      'Authorization': this.cookieService.get("AuthToken")
-    });
-    const options = {
-      headers
-    };
-
+    let options = this.createHeader();
     return this.http.delete<any>(AppSettings.API_ENDPOINT + '/ticket/' + ticket.id, options);
   }
+  addTicket(ticket: any) {
+    let options = this.createHeader();
+    return this.http.post<any>(AppSettings.API_ENDPOINT + `/ticket/add`, ticket, options);
+  }
 
+  deleteTicket(id: number) {
+    let options = this.createHeader();
+    return this.http.delete<any>(AppSettings.API_ENDPOINT + `/ticket/${id}`, options);
+  }
 
 }
