@@ -2,11 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ViewChild, ElementRef } from '@angular/core';
 import { Feature } from 'src/app/model/feature.model';
 import { Theater } from 'src/app/model/theater.model';
-//import { TheaterService } from 'src/app/theater.service';
-//import { Seat } from 'src/app/model/seat.model';
-//import { SeatsService } from 'src/app/seats.service';
-import { TheatersEService } from 'src/app/theatersE.service';
-import { SeatsEService } from 'src/app/seatsE.service';
+import { TheatersService } from 'src/app/theaters.service';
+import { SeatsService } from 'src/app/seats.service';
 @Component({
   selector: 'app-theaters-control',
   templateUrl: './theaters-control.component.html',
@@ -32,7 +29,7 @@ export class TheatersControlComponent implements OnInit {
   seatToAddtype!: string;
   seatToAddRemovable = false;
   currentCinemaToUpdate!: any;
-  constructor(private theaterService: TheatersEService, private seatsService: SeatsEService) {
+  constructor(private theaterService: TheatersService, private seatsService: SeatsService) {
     this.listOfFeaturesToAdd = [];
     this.theatersList = [];
     this.theaterService.getTheatersFeaturesList().subscribe((features: any) => {
@@ -93,7 +90,7 @@ export class TheatersControlComponent implements OnInit {
           if (currentSeatNumber > columns * row) {
             row++;
           }
-          this.seatsService.addSeat({ number: currentSeatNumber++, row: row, type: 'Regular', removable: true }, id.lastId).subscribe((data) => {
+          this.seatsService.addSeat({ number: currentSeatNumber++, row: row, type: 'Regular', removable: true }, id.lastId).subscribe((data:any) => {
           });;
           if (currentSeatNumber > numSeats) {
             break;
@@ -107,7 +104,7 @@ export class TheatersControlComponent implements OnInit {
       }, 200);
     } else {
 
-      this.theaterService.updateTheater({ name: this.newTheaterName, number_of_seats: this.numberOfSeats, features: this.listOfFeaturesToAdd }, this.currentCinemaToUpdate.id).subscribe(elem => {
+      this.theaterService.updateTheater({ name: this.newTheaterName, number_of_seats: this.numberOfSeats, features: this.listOfFeaturesToAdd }, this.currentCinemaToUpdate.id).subscribe((elem:any) => {
         const quantityDeletedElements = this.currentCinemaToUpdate.number_of_seats - this.numberOfSeats;
         if (quantityDeletedElements > 0) {
           let deletedElementsIds = [];
@@ -116,7 +113,7 @@ export class TheatersControlComponent implements OnInit {
             deletedElementsIds.push(this.currentCinemaToUpdate.seats[Object.keys(this.currentCinemaToUpdate.seats).length - i].id);
           }
           for (let i = 0; i < quantityDeletedElements; i++) {
-            this.seatsService.removeSeat(this.currentCinemaToUpdate.id, deletedElementsIds[i]).subscribe((data) => { });
+            this.seatsService.removeSeat(this.currentCinemaToUpdate.id, deletedElementsIds[i]).subscribe((data:any) => { });
           }
         } else if (quantityDeletedElements != 0) {
           this.updateTheatersWrapper();
@@ -142,7 +139,7 @@ export class TheatersControlComponent implements OnInit {
           console.log('quentaty to add before residual' + quantatySeatsToAdd);
           console.log('residual' + residual);
           for (let i = 0; i < residual; i++) {
-            this.seatsService.addSeat({ number: ++numberOfSeatsCurCin, row: seatRow, type: this.seatToAddtype, removable: this.seatToAddRemovable }, idOfCurrentCinema).subscribe((data) => {
+            this.seatsService.addSeat({ number: ++numberOfSeatsCurCin, row: seatRow, type: this.seatToAddtype, removable: this.seatToAddRemovable }, idOfCurrentCinema).subscribe((data:any) => {
             });;
             quantatySeatsToAdd--
           }
@@ -156,7 +153,7 @@ export class TheatersControlComponent implements OnInit {
             }
             seatRow++;
             for (let i = 0; i < columns; i++) {
-              this.seatsService.addSeat({ number: ++numberOfSeatsCurCin, row: seatRow, type: this.seatToAddtype, removable: this.seatToAddRemovable }, idOfCurrentCinema).subscribe((data) => {
+              this.seatsService.addSeat({ number: ++numberOfSeatsCurCin, row: seatRow, type: this.seatToAddtype, removable: this.seatToAddRemovable }, idOfCurrentCinema).subscribe((data:any) => {
               });;
               addedSeats++;
               console.log('to add' + quantatySeatsToAdd);
@@ -181,7 +178,7 @@ export class TheatersControlComponent implements OnInit {
     this.dialog.nativeElement.close();
   }
   deleteTheater(id: number) {
-    this.theaterService.deleteTheater(id).subscribe((result) => {
+    this.theaterService.deleteTheater(id).subscribe((result:any) => {
       this.updateTheatersWrapper();
     });
 
@@ -267,17 +264,17 @@ export class TheatersControlComponent implements OnInit {
       if (((seatNumber - 1) / seatRow) == Math.floor((seatNumber - 1) / seatRow)) {
         seatRow++;
       }
-      this.seatsService.addSeat({ number: seatNumber, row: seatRow, type: this.seatToAddtype, removable: this.seatToAddRemovable }, this.currentTheaterSeatsConfiguration.id).subscribe((data) => {
+      this.seatsService.addSeat({ number: seatNumber, row: seatRow, type: this.seatToAddtype, removable: this.seatToAddRemovable }, this.currentTheaterSeatsConfiguration.id).subscribe((data:any) => {
       });;
       let currentTheaterFeatures = [];
       for (let i = 0; i < Object.keys(this.currentTheaterSeatsConfiguration.features).length; i++) {
         currentTheaterFeatures.push(this.currentTheaterSeatsConfiguration.features[i].id);
       }
-      this.theaterService.updateTheater({ name: this.currentTheaterSeatsConfiguration.name, number_of_seats: this.currentTheaterSeatsConfiguration.number_of_seats + 1, features: currentTheaterFeatures }, this.currentTheaterSeatsConfiguration.id).subscribe(elem => {
+      this.theaterService.updateTheater({ name: this.currentTheaterSeatsConfiguration.name, number_of_seats: this.currentTheaterSeatsConfiguration.number_of_seats + 1, features: currentTheaterFeatures }, this.currentTheaterSeatsConfiguration.id).subscribe((elem:any) => {
         this.currentTheaterSeatsConfiguration.number_of_seats++;
       });
     }else{
-      this.seatsService.editSeat({number:this.currentSeatToUpdate.number,row:this.currentSeatToUpdate.row,type:this.seatToAddtype,removable: this.seatToAddRemovable},this.currentTheaterSeatsConfiguration.id,this.currentSeatToUpdate.id).subscribe(data=>{});
+      this.seatsService.editSeat({number:this.currentSeatToUpdate.number,row:this.currentSeatToUpdate.row,type:this.seatToAddtype,removable: this.seatToAddRemovable},this.currentTheaterSeatsConfiguration.id,this.currentSeatToUpdate.id).subscribe((data:any)=>{});
     }
    
     this.updateTheatersWrapper();

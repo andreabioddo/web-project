@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {ViewChild,ElementRef} from '@angular/core';
-import { ShowsEService } from 'src/app/showE.service';
+import { ShowsService } from 'src/app/show.service';
 //import { TheaterService } from 'src/app/theater.service';
 //import { MovieService } from 'src/app/movie.service';
-import { MovieEService } from 'src/app/movieE.service';
-import { TheatersEService } from 'src/app/theatersE.service';
+import { MovieService } from 'src/app/movie.service';
+import { TheatersService } from 'src/app/theaters.service';
 @Component({
   selector: 'app-shedule-control',
   templateUrl: './shedule-control.component.html',
@@ -23,7 +23,7 @@ hoursOfShow!:number;
 minutesOfShow!:number;
 showDialogType='add';
 showToUpdateId!:any;
-  constructor(private showsService:ShowsEService,private theaterService:TheatersEService,private moviesService:MovieEService) {
+  constructor(private showsService:ShowsService,private theaterService:TheatersService,private moviesService:MovieService) {
 this.update();
   }
 openAddShowDialoge(){
@@ -76,7 +76,7 @@ update(){
     this.showsList=shows;
     console.log(shows);
   })
-  this.moviesService.getMovies().subscribe(movies=>{
+  this.moviesService.getMovies().subscribe((movies:any)=>{
     this.moviesList=movies;
   });
   this.theaterService.getTheaters().subscribe(

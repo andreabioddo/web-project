@@ -55,4 +55,20 @@ export class MovieService {
 
     return this.http.post<any>(AppSettings.API_ENDPOINT + "/ticket/add", networkWrapper, options);
   }
+  addMovie(movie: any) {
+    let options = this.createHeader();
+    return this.http.post<any>(AppSettings.API_ENDPOINT + '/movie/add', movie, options);
+  }
+  deleteMovie(id: number) {
+    let options = this.createHeader();
+    return this.http.delete<any>(AppSettings.API_ENDPOINT + `/movie/${id}`, options);
+  }
+  getParticularMovie(id: number) {
+    let options = this.createHeader();
+    return this.http.get<any>(AppSettings.API_ENDPOINT + `/movie/${id}`, options);
+  }
+  editMovie(movie: any, id: number) {
+    let options = this.createHeader();
+    return this.http.put<any>(AppSettings.API_ENDPOINT + `/movie/${id}`, movie, options);
+  }
 }

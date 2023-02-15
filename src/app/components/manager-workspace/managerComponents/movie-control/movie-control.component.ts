@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 //import { MovieService } from 'src/app/movie.service';
 import {ViewChild,ElementRef} from '@angular/core';
-import { ReviewsEService } from 'src/app/reviewE.service';
-import { MovieEService } from 'src/app/movieE.service';
+import { ReviewsService } from 'src/app/review.service';
+import { MovieService } from 'src/app/movie.service';
 @Component({
   selector: 'app-movie-control',
   templateUrl: './movie-control.component.html',
@@ -19,7 +19,7 @@ newMovieMinimumAge!:number;
 newMovieDuration!:number;
 currentReviesList!:any;
 updatingMovieId!:number;
-  constructor(private movieService:MovieEService,private reviewsService:ReviewsEService) {
+  constructor(private movieService:MovieService,private reviewsService:ReviewsService) {
 this.updateMoviesWrapper();
 setTimeout(()=>{
   console.log(this.moviesList);
@@ -85,7 +85,7 @@ this.movieService.deleteMovie(movieId).subscribe(data=>{
 });
 }
 openReviewsModal(movieId:number){
-this.reviewsService.getReview(movieId).subscribe(reviews=>{
+this.reviewsService.getReview(movieId).subscribe((reviews:any)=>{
   this.currentReviesList=reviews;
   console.log(reviews);
 this.reviewsDialog.nativeElement.show();

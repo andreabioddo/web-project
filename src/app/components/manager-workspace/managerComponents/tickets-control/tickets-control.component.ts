@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { TicketsEService } from 'src/app/ticketsE.service';
-import { TheatersEService } from 'src/app/theatersE.service';
-import { MovieEService } from 'src/app/movieE.service';
+import { TicketsService } from 'src/app/tickets.service';
+import { TheatersService } from 'src/app/theaters.service';
+import { MovieService } from 'src/app/movie.service';
 import { ViewChild, ElementRef } from '@angular/core';
-import { UsersEEService } from 'src/app/userE.service';
-import { ShowsEService } from 'src/app/showE.service';
+import { ShowsService } from 'src/app/show.service';
+import { UsersService } from 'src/app/user.service';
 @Component({
   selector: 'app-tickets-control',
   templateUrl: './tickets-control.component.html',
@@ -24,7 +24,7 @@ export class TicketsControlComponent implements OnInit {
   ticketsList!:any;
   showsList!:any;
   chosenShowId!:any;
-  constructor(private ticketService: TicketsEService, private theatersService: TheatersEService, private movieService: MovieEService, private usersService: UsersEEService,private showsService:ShowsEService) {
+  constructor(private ticketService: TicketsService, private theatersService: TheatersService, private movieService: MovieService, private usersService: UsersService,private showsService:ShowsService) {
     
     
     this.update();
@@ -36,13 +36,13 @@ export class TicketsControlComponent implements OnInit {
     this.movieService.getMovies().subscribe(movies => {
       this.moviesList = movies;
     })
-    this.usersService.getUsers().subscribe(users => {
+    this.usersService.getUsers().subscribe((users:any) => {
       this.usersList = users;
     })
-    this.theatersService.getTheaters().subscribe(theaters => {
+    this.theatersService.getTheaters().subscribe((theaters:any) => {
       this.theatersList = theaters;
     });
-    this.ticketService.getTickets().subscribe(tickets => {
+    this.ticketService.getTickets().subscribe((tickets:any) => {
       this.ticketsList=tickets;
       console.log(tickets);
     });
@@ -54,7 +54,7 @@ export class TicketsControlComponent implements OnInit {
     this.addTicketDialog.nativeElement.show();
   }
   returnTicket(id:number){
-this.ticketService.deleteTicket(id).subscribe(data=>{
+this.ticketService.deleteTicket(id).subscribe((data:any)=>{
   
 });
   }
@@ -71,7 +71,7 @@ this.ticketService.deleteTicket(id).subscribe(data=>{
         return false;
       }
     })){
-      this.ticketService.addTicket({price:40,id_seat:this.chosenSeatId,id_user:this.chosenUserId,id_show:this.chosenShowId}).subscribe(data=>{
+      this.ticketService.addTicket({price:40,id_seat:this.chosenSeatId,id_user:this.chosenUserId,id_show:this.chosenShowId}).subscribe((data:any)=>{
         this.update();
         this.update();
             });
