@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Theater } from 'src/app/model/theater.model';
 import { ActivatedRoute, Router } from '@angular/router';
+import { GlobalService } from 'src/app/global.service';
 @Component({
   selector: 'app-manager-workspace',
   templateUrl: './manager-workspace.component.html',
@@ -8,7 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ManagerWorkspaceComponent implements OnInit {
 navBarclicked=false;
-  constructor(private router:Router, public route:ActivatedRoute) { 
+  constructor(private router:Router, public route:ActivatedRoute, private globalService: GlobalService) { 
     this.navBarclicked=false;
   }
 
@@ -21,5 +22,8 @@ navigate(path:string){
 backHome(){
   this.navBarclicked=false;
   this.router.navigate(['/manager']);
+}
+logout() {
+  this.globalService.logout();
 }
 }

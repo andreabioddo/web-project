@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GlobalService } from 'src/app/global.service';
 
 @Component({
   selector: 'app-navbar-layout',
@@ -7,8 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarLayoutComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private globalService: GlobalService) { }
+  logout() {
+    this.globalService.logout();
+  }
   ngOnInit(): void {
   }
 

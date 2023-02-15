@@ -12,6 +12,10 @@ export class GlobalService {
     public loggedIn = false;
     constructor(private http: HttpClient, private cookieService: CookieService, private router:Router) { }
 
+    logout() {
+        this.cookieService.delete('Admin');
+        this.cookieService.delete('AuthToken');
+    }
     doLogin(email: string, password: string) {
         const headers = new HttpHeaders({
             'Content-Type': 'application/json',
