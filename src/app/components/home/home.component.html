@@ -1,7 +1,7 @@
 <div class="container">
     <form action="#" class="authorisationForm" *ngIf="!registration">
         <input type="text" name="email" placeholder="Your login" [(ngModel)]="email" />
-        <input type="text" name="password" placeholder="Your password" [(ngModel)]="password" />
+        <input type="password" name="password" placeholder="Your password" [(ngModel)]="password" />
         <div class="button_container">
             <button (click)="registrationOpen($event)">Registration</button>
             <button (click)="logIn($event)">Log in</button>

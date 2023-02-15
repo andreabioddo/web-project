@@ -44,7 +44,7 @@ export class GlobalService {
             },
             error => {
                 console.error('Error during login: ', error);
-                alert("Error during login: " + error);
+                alert("Error during login: "+ error.error.message +"\n"+ error.error.error);
             });
     }
     doRegister(user: User) {
@@ -62,7 +62,7 @@ export class GlobalService {
                 this.token = token.login;
                 this.loggedIn = true;
             },
-            error => console.error('Error during login: ', error));
+            error => {console.error('Error during login: ', error)});
     }
 
 }
