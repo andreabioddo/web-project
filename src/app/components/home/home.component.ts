@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { GlobalService } from 'src/app/global.service';
 import { Inject } from '@angular/core';
 import { User } from 'src/app/model/user';
+import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -18,15 +20,21 @@ export class HomeComponent implements OnInit {
   public registerPassword!: string;
 
   registration = false;
-  constructor(private globalService: GlobalService) { }
+  constructor(private globalService: GlobalService, private cookieService: CookieService, private router:Router) { }
   registrationOpen(e: any) {
     e.preventDefault();
     this.registration = true;
   }
   logIn(e: any) {
     e.preventDefault();
-
     this.globalService.doLogin(this.email, this.password);
+    if(this.cookieService.check("Admin")){
+      this.router.navigate(['/manager']);
+      return;
+    } 
+    if(this.cookieService.check("AuthToken")){
+      this.router.navigate(['/overview']);
+    }
   }
   register() {
     let user: User = {

@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { User } from "./model/user"
 import { AppSettings } from "./app-settings";
 import { CookieService } from 'ngx-cookie-service';
+import { Route, Router } from "@angular/router";
 
 @Injectable()
 export class GlobalService {

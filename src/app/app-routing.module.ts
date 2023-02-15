@@ -26,11 +26,11 @@ const routes: Routes = [{ path: '', component: HomeComponent },
     { path: 'manage', component: UserManagerComponent, canActivate: [LoginActivate] }]
 },
 { path: 'manager', component: ManagerWorkspaceComponent,children:[
-  { path: 'theaters', component: TheatersControlComponent },
-  { path: 'movies', component: MovieControlComponent },
-  {path:'shedule',component:SheduleControlComponent},
-  {path:'tickets',component:TicketsControlComponent} 
-] }
+  { path: 'theaters', component: TheatersControlComponent, canActivate: [AdminActivate] },
+  { path: 'movies', component: MovieControlComponent,  canActivate: [AdminActivate] },
+  {path:'shedule',component:SheduleControlComponent,  canActivate: [AdminActivate]},
+  {path:'tickets',component:TicketsControlComponent, canActivate: [AdminActivate]} 
+], canActivate: [AdminActivate] }
 ];
 
 

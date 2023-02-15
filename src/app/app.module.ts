@@ -9,7 +9,7 @@ import { FilmIconComponent } from './components/film-icon/film-icon.component';
 import { GlobalService } from './global.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { LoginActivate } from './login-activate';
+import { AdminActivate, LoginActivate } from './login-activate';
 import { OverviewComponent } from './components/overview/overview.component';
 import { MovieDetailComponent } from './components/movie-detail/movie-detail.component';
 import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
@@ -52,7 +52,7 @@ import { TicketsControlComponent } from './components/manager-workspace/managerC
     NgbRatingModule,
     NgxQRCodeModule
   ],
-  providers: [GlobalService, LoginActivate, CookieService],
+  providers: [GlobalService, LoginActivate, CookieService, AdminActivate],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
