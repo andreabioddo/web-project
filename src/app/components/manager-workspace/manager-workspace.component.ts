@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Theater } from 'src/app/model/theater.model';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-manager-workspace',
   templateUrl: './manager-workspace.component.html',
@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class ManagerWorkspaceComponent implements OnInit {
 navBarclicked=false;
-  constructor(private router:Router) { 
+  constructor(private router:Router, public route:ActivatedRoute) { 
     this.navBarclicked=false;
   }
 

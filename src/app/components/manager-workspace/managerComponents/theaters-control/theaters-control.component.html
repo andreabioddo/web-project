@@ -1,5 +1,8 @@
 <div class="container">
-    <button class="addCinemaButton btn btn-secondary" (click)="openAddCinemaDialog('create')">Add new Cinema +</button>
+    <br>
+    <h2>Theater</h2>
+    <p>Here you can manage theaters. you can create a new theater pressing the button, can manage seats</p>
+    <button class="addCinemaButton" (click)="openAddCinemaDialog('create')">Add new Cinema +</button>
     <dialog #dialog>
         <form action="#" name="myForm" #createTheaterform>
             <button (click)="closeDialog()">Close</button>
