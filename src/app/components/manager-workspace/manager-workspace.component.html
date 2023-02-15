@@ -1,10 +1,75 @@
+<nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" (click)="backHome()">Home</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" (click)="navigate('theaters')">Theatres</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" (click)="navigate('movies')">Movies</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active"  (click)="navigate('shedule')">Schedule</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" (click)="navigate('tickets')">Tickets</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
 <div class="container">
-    <button *ngIf="navBarclicked" (click)="backHome()">Home</button>
-    <div class="navigationBar" *ngIf="!navBarclicked">
-        <div class="navElem theatersNav" (click)="navigate('theaters')"><p class="navText">Theatres</p></div>
-        <div class="navElem movieNav" (click)="navigate('movies')">  <p class="navText">Movies      </p></div>
-        <div class="navElem sheduleNav" (click)="navigate('shedule')"><p class="navText">Shedule     </p></div>
-        <div class="navElem ticketsNav" (click)="navigate('tickets')"><p class="navText">Sell Tickets</p></div>
+    <h1>Admin Area</h1>
+
+    <div class="mx-auto" *ngIf="!navBarclicked">
+        <p class="text-start">Welcome in the menager page. Please select some action to do</p>
+        <div class="row">
+            <div class="col-6">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Theatres</h5>
+                        <p class="card-text">Here you can manage theaters</p>
+                        <p href="#" (click)="navigate('theaters')" class="btn btn-primary">Manage</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Movies</h5>
+                        <p class="card-text">Here you can manage movies</p>
+                        <p href="#" (click)="navigate('movies')" class="btn btn-primary">Manage</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-6">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Schedule</h5>
+                        <p class="card-text">Here you can manage schedule</p>
+                        <p href="#" (click)="navigate('shedule')" class="btn btn-primary">Manage</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Sell tickets</h5>
+                        <p class="card-text">Here you can manage tickets</p>
+                        <p href="#" (click)="navigate('tickets')" class="btn btn-primary">Manage</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <router-outlet></router-outlet>
-</div> 
+</div>
