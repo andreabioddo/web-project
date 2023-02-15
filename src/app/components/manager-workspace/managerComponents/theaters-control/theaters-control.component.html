@@ -3,30 +3,46 @@
   <dialog #dialog>
     <form action="#" name="myForm" #createTheaterform>
       <button (click)="closeDialog()">Close</button>
-      <input type="number" placeholder="ID" [(ngModel)]="newTheaterID" name="newTheaterID">
       <input type="text" placeholder="NAME" [(ngModel)]="newTheaterName" name="newTheaterName">
       <input type="number" placeholder="Quantity of seats" [(ngModel)]="numberOfSeats" name="newTheaterNumberOfSeats">
-      <div class="checkBoxContainer">
-        <label for="3D">3D</label>
-        <input type="checkbox" name="3D" (click)="set3D()">
-        <label for="4D">4D</label>
-        <input type="checkbox" name="4D" (click)="set4D()">
-        <label for="dolby">Dolby Atmos</label>
-        <input type="checkbox" name="dolby" (click)="setDolby()">
-      </div>
+      <select name="features" id="2" [(ngModel)]="currentFeatureToAdd">
+        <option name="opt" [value]="feature.id" *ngFor="let feature of features">{{feature.name}}</option>
+      </select>
+      <button (click)="addFeature()">Add feature</button>
+      <button (click)="deleteFeature()">Delete feature</button>
       <input type="submit" value="Create" (click)="createTheater($event)">
     </form>
   </dialog>
+  <dialog #seatsDialog class="seatsDialog">
+    <button>Save</button>
+    <button (click)="closeSeatsModal()">Close</button>
+    <button (click)="openSeatAddingModal()">Add Seat</button>
+    <dialog #addSeatDialog>
+      <select name="SeatType" id="56" [(ngModel)]="seatToAddtype">
+        <option value="VIP">VIP</option>
+        <option value="Regular">Regular</option>
+      </select>
+<label for="removableCheckbox">Removable</label>
+      <input type="checkbox" name="removableCheckbox" [(ngModel)]="seatToAddRemovable">
+      <button (click)="addSeat()">Add</button>
+      <button (click)="closeAddingSeatModal()">Close</button>
+    </dialog>>
+    <div class="row" *ngFor="let row of rows">
+      <div class="seat" *ngFor="let seat of row" (click)="openSeatModification(seat)">{{seat+1}}</div>
+    </div>
+  </dialog>
   <div class="theatersContainer">
     <div class="theater" *ngFor="let theater of theatersList">
-        <p>ID : {{theater.id}}</p>
-        <p>Name : {{theater.name}}</p>
-        <p>Number of seats : {{theater.numberOfSeats}}</p>
-        <p>3D : {{isFeatureAvaliable(theater.listOfFeatures,'3D')}}</p>
-        <p>4D : {{isFeatureAvaliable(theater.listOfFeatures,'4D')}}</p>
-        <p>Dolby Atmos : {{isFeatureAvaliable(theater.listOfFeatures,'Dolby Atmos')}}</p>
-        <button (click)="openAddCinemaDialog('update',theater)">Update</button>
-        <button (click)="deleteTheater(theater)">Delete</button>
-      </div>
+      <p>Name : {{theater.name}}</p>
+      <p>Number of seats : {{theater.numberOfSeats}}</p>
+      <label for="feature">Feuters List:</label>
+      <select name="features" id="189">
+        <option value="1" *ngFor="let feature of makeAnArrayOfFeatures(theater)">{{feature}}</option>
+      </select>
+      <br>
+      <button (click)="openUpdateCinemaDialog(theater)">Update</button>
+      <button (click)="deleteTheater(theater.id)">Delete</button>
+      <button (click)="seatsModalOpen(theater.numberOfSeats,theater)">Seats configuration</button>
+    </div>
   </div>
 </div>

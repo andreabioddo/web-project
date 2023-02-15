@@ -31,4 +31,6 @@ export class TicketService {
 
     return this.http.delete<any>(AppSettings.API_ENDPOINT + '/ticket/' + ticket.id, options);
   }
+
+
 }

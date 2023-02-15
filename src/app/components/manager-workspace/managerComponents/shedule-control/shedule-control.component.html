@@ -1,0 +1,30 @@
+<div class="container">
+   <button class="addSheduleButton" (click)="openAddShowDialoge()">Add new Shedule +</button>
+   <dialog #addShowDialog>
+    <form action="#" name="myForm" #createShowform>
+      <button (click)="closeAddShowDialoge()">Close</button>
+      <select name="theater" id="1" [(ngModel)]="theaterShowId">
+        <option *ngFor="let theater of theatersList" [value]="theater.id" >{{theater.name}}</option>
+      </select>
+      <select name="movie" id="2" [(ngModel)]="movieShowId">
+        <option *ngFor="let movie of moviesList" [value]="movie.id" >{{movie.name}}</option>
+      </select>
+      <label for="something" ></label>
+      <input type="number" min="1" max="12" placeholder="month" [(ngModel)]="monthOfShow" name="something">
+      <input type="number" min="1" max="31" placeholder="day" [(ngModel)]="dayOfShow" name="somethingelse">
+      <input type="number" min="1" max="24" placeholder="Hours of time" [(ngModel)]="hoursOfShow" name="somethingmore">
+      <input type="number" min="1" max="60" placeholder="Minutes of time" [(ngModel)]="minutesOfShow" name="somethingm">
+      <button (click)="addNewShow()">Add</button>
+    </form>
+  </dialog>
+   <div class="shedulesContainer">
+       <div class="shedule" *ngFor="let show of showsList">
+         <p>Film : {{show.moviename}}</p>
+         <p>Theater : {{show.theatername}}</p>
+         <p>Time : {{show.time}}</p>
+         <button (click)="openShowToUpdateDialog(show.id)">Update</button>
+         <button (click)="deleteShow(show.id)">Delete</button>
+       </div>
+     </div>
+     
+</div>

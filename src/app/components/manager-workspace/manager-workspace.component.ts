@@ -8,12 +8,18 @@ import { Router } from '@angular/router';
 })
 export class ManagerWorkspaceComponent implements OnInit {
 navBarclicked=false;
-  constructor(private router:Router) { }
+  constructor(private router:Router) { 
+    this.navBarclicked=false;
+  }
 
   ngOnInit(): void {
   }
 navigate(path:string){
   this.navBarclicked=true;
   this.router.navigate(['/manager',path])
+}
+backHome(){
+  this.navBarclicked=false;
+  this.router.navigate(['/manager']);
 }
 }

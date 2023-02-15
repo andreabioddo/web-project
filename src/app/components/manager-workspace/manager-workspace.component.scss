@@ -348,10 +348,12 @@
     display: none;
   }
 .container{
+  background-color:purple;
     width: 100%;
     padding: 0;
 }
 .navigationBar{
+  text-align: center;
     display: flex;
     justify-content: space-between;
 }
@@ -361,6 +363,9 @@
     background-color: black;
 }
 .navText{
-    font-size: 30px;
+    font-size: 70px;
     color: aqua;
+}
+body{
+  background-color:purple;
 }

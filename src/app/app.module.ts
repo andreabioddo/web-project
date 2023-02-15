@@ -21,6 +21,10 @@ import { TheatersControlComponent } from './components/manager-workspace/manager
 import { NavbarLayoutComponent } from './components/navbar-layout/navbar-layout.component';
 import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 import { CookieService } from 'ngx-cookie-service';
+import { MovieControlComponent } from './components/manager-workspace/managerComponents/movie-control/movie-control.component';
+import { SheduleControlComponent } from './components/manager-workspace/managerComponents/shedule-control/shedule-control.component';
+import { TicketsControlComponent } from './components/manager-workspace/managerComponents/tickets-control/tickets-control.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,6 +37,10 @@ import { CookieService } from 'ngx-cookie-service';
     UserManagerComponent,
     ManagerWorkspaceComponent,
     TheatersControlComponent,
+    ManagerWorkspaceComponent,
+    MovieControlComponent,
+    SheduleControlComponent,
+    TicketsControlComponent,
     NavbarLayoutComponent
   ],
   imports: [

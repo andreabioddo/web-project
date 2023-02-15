@@ -1,0 +1,26 @@
+<div class="container">
+    <button class="addTicketButton" (click)="openTicketAdd()">Add new ticket +</button>
+    <dialog #addTicketDialog>
+     <form action="#" name="myForm" #createShowform>
+      <button (click)="closeTicketAdd()">Close</button>
+      <select name="user" id="56" [(ngModel)]="chosenUserId">
+        <option  *ngFor="let user of usersList"  [value]="user.id" >{{user.name}}</option>
+       </select>
+       <select name="show" id="1" [(ngModel)]="chosenShowId" (click)="setSeatsForTheater()">
+        <option  *ngFor="let show of showsList"  [value]="show.id" >{{show.id}}</option>
+       </select>
+       <select name="seats" id="7" [(ngModel)]="chosenSeatId" >
+        <option   *ngFor="let seat of currentTheaterSeats"  [value]="seat.id">{{seat.number}}</option>
+       </select>
+       <button (click)="addTicket()">Add</button>
+     </form>
+   </dialog>
+    <div class="ticketsContainer">
+        <div class="ticket" *ngFor="let ticket of ticketsList">
+          <p>Ticket id :{{ticket.id}}</p>
+          <button (click)="returnTicket(ticket.id)">Return</button>
+        </div>
+      </div>
+      
+ </div>
+ 
