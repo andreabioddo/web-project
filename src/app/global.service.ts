@@ -14,7 +14,6 @@ export class GlobalService {
     doLogin(email: string, password: string) {
         const headers = new HttpHeaders({
             'Content-Type': 'application/json',
-            // maybe needed for future: 'Authorization': 'Basic YW5ndWxhcjphbmd1bGFy'
         });
 
         const options = {
@@ -36,14 +35,12 @@ export class GlobalService {
     doRegister(user: User) {
         const headers = new HttpHeaders({
             'Content-Type': 'application/json',
-            // maybe needed for future: 'Authorization': 'Basic YW5ndWxhcjphbmd1bGFy'
         });
 
         const options = {
             headers
         };
 
-        console.log(user);
         return this.http.post<any>(AppSettings.API_ENDPOINT + '/user/register', user, options).subscribe(
             token => {
                 this.cookieService.set('AuthToken', token.login, { expires: new Date(new Date().getTime() +  1000 * 60 * 60) });

@@ -24,7 +24,6 @@ export class TicketComponent implements OnInit {
         this.seatId = this.route.snapshot.params['seatId'];
         this.movieService.getSeats(this.showId).subscribe(
             seats => {
-                console.log(seats);
                 let seats1D: Seat[] = [];
                 for (let seat of seats.avaiable_seats) {
                     let newSeat: Seat = {
@@ -71,8 +70,6 @@ export class TicketComponent implements OnInit {
                 this.reservationSuccessful = true;
             },
             error => {
-                console.log(error)
-
                 this.showOtherOptionsSection = true;
                 this.reservationSuccessful = false;
             }

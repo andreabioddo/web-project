@@ -55,10 +55,8 @@ export class MovieDetailComponent implements OnInit {
         )
     }
     onChange() {
-        console.log(this.selectedShow);
         this.movieService.getSeats(this.selectedShow.showId.toString()).subscribe(
             seats => {
-                console.log(seats);
                 let seats1D: Seat[] = [];
                 for (let seat of seats.avaiable_seats) {
                     let newSeat: Seat = {
@@ -108,7 +106,6 @@ export class MovieDetailComponent implements OnInit {
         };
 
         this.ratingService.addRating(rating).subscribe(c => {
-            console.log(c);
             this.ratings.push(rating);
         }
         );

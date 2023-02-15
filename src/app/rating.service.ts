@@ -11,7 +11,14 @@ export class RatingService {
 
   constructor(private http: HttpClient, private cookieService: CookieService) { }
   getRatings(movieId: string) {
-    return this.http.get<Rating[]>(AppSettings.API_ENDPOINT + "/review/" + movieId);
+    const headers = new HttpHeaders({
+      'Authorization': this.cookieService.get("AuthToken")
+    });
+    const options = {
+      headers
+    };
+
+    return this.http.get<Rating[]>(AppSettings.API_ENDPOINT + "/review/" + movieId, options);
   }
   addRating(rating: Rating) {
     const headers = new HttpHeaders({

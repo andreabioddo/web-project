@@ -1,16 +1,14 @@
 <div class="d-flex justify-content-evenly">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand">Navigate</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="nav-item nav-link" routerLink="/overview">Home</a>
-                <a class="nav-item nav-link" routerLink="/manage">Manage Account & Tickets</a>
-            </div>
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" routerLink="/overview">Navigate</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li class="nav-item"><a class="nav-link" routerLink="/overview">Home</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/manage">Manage Account & Tickets</a></li>
+          </ul>
         </div>
-    </nav>
+      </nav>
 </div>
 <router-outlet></router-outlet>

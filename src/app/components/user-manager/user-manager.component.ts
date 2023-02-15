@@ -22,7 +22,6 @@ export class UserManagerComponent implements OnInit {
       .pipe(map(res => res.map((item: any) => ({ id: item.id, price: item.price, time: new Date(new Date((new Date(item.date)).setHours((new Date(item.date)).getHours() + item.time.split(":")[0])).setMinutes((new Date(item.date)).getMinutes() + item.time.split(":")[1])), theater: item.theatername, seat: item.seatnumber, movieName: item.moviename }))))
       .subscribe(
         (results: Ticket[]) => {
-          console.log(results);
           this.tickets = results;
         });
   }

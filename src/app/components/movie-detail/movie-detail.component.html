@@ -2,11 +2,12 @@
     <div class="row">
         <div class="col-2"></div>
         <div class="col-8">
-            <h2>Name: {{movie.name}}</h2>
-            <p class="text-muted">Description: {{movie.description}}</p>
-            <p class="text-muted">Age: {{movie.age}}</p>
-            <p class="text-muted">Duration: {{movie.duration}}</p>
-
+            <ng-container *ngIf="movie">
+                <h2>Name: {{movie.name}}</h2>
+                <p class="text-muted">Description: {{movie.description}}</p>
+                <p class="text-muted">Age: {{movie.age}}</p>
+                <p class="text-muted">Duration: {{movie.duration}}</p>
+            </ng-container>
             <h4>When are we playing the movie:</h4>
             <label for="show"> Select date and place </label>
             <select id="show" class="form-select" name="show" [(ngModel)]="selectedShow" (ngModelChange)="onChange()">
