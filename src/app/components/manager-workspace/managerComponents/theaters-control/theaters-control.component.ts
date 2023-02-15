@@ -268,6 +268,7 @@ console.log(this.currentCinemaToUpdate.seats);
   }
   openSeatModification(seat:any) {
     this.seatAddType='edit';
+    this.seatToAddtype="Regular";
     this.currentSeatToUpdate=this.currentTheaterSeatsConfiguration.seats.find((elem:any)=>elem.number==seat+1);
     this.addSeatDialog.nativeElement.show();
   }
