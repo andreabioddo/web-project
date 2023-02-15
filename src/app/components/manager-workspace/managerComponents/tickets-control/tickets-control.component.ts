@@ -59,6 +59,9 @@ export class TicketsControlComponent implements OnInit {
   returnTicket(id:number){
 this.ticketService.deleteTicket(id).subscribe((data:any)=>{
   this.update();
+},
+error =>{
+  alert("Ticket cannot be returned. Too late.");
 });
 
   }

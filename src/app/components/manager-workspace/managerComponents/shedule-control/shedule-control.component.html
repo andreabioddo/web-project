@@ -12,8 +12,8 @@
       <label for="something" ></label>
       <input type="number" min="1" max="12" placeholder="month" [(ngModel)]="monthOfShow" name="something">
       <input type="number" min="1" max="31" placeholder="day" [(ngModel)]="dayOfShow" name="somethingelse">
-      <input type="number" min="1" max="24" placeholder="Hours of time" [(ngModel)]="hoursOfShow" name="somethingmore">
-      <input type="number" min="1" max="60" placeholder="Minutes of time" [(ngModel)]="minutesOfShow" name="somethingm">
+      <input type="number" min="0" max="24" placeholder="Hours of time" [(ngModel)]="hoursOfShow" name="somethingmore">
+      <input type="number" min="0" max="60" placeholder="Minutes of time" [(ngModel)]="minutesOfShow" name="somethingm">
       <button (click)="addNewShow()">Add</button>
     </form>
   </dialog>

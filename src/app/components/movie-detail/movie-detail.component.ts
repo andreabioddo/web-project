@@ -110,7 +110,7 @@ export class MovieDetailComponent implements OnInit {
                 this.ratings.push(rating);
             },
             err => {
-                console.log(err);
+                alert("You cannot add review to the same film twice, and you cannot add a review to a film you didn't saw.");
             }
         );
     }
