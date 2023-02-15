@@ -32,6 +32,7 @@ export class TheatersControlComponent implements OnInit {
   seatToAddtype!: string;
   seatToAddRemovable = false;
   currentCinemaToUpdate!: any;
+
   constructor(private theaterService: TheatersService, private seatsService: SeatsService) {
     this.listOfFeaturesToAdd = [];
     this.theatersList = [];
@@ -47,14 +48,16 @@ export class TheatersControlComponent implements OnInit {
   }
 
   addFeature() {
+    if(!this.currentFeatureToAdd){
+      return;
+    }
     if (!this.listOfFeaturesToAdd.find(elem => elem == this.currentFeatureToAdd)) {
       this.listOfFeaturesToAdd.push(+this.currentFeatureToAdd);
     }
-    console.log(this.listOfFeaturesToAdd);
+    
   }
   deleteFeature() {
     this.listOfFeaturesToAdd = this.listOfFeaturesToAdd.filter(elem => elem != +this.currentFeatureToAdd);
-    console.log(this.listOfFeaturesToAdd);
   }
   openAddCinemaDialog(type: string) {
     this.dialog.nativeElement.show();
@@ -83,6 +86,13 @@ export class TheatersControlComponent implements OnInit {
     return 'Unavaliale';
   }
   createTheater(e: any) {
+    if(!this.newTheaterName||!this.numberOfSeats){
+alert(`Invalid data!`);
+this.dialog.nativeElement.close();
+this.refresh();
+this.updateTheatersWrapper();
+return;
+    }
     if (this.modalType == 'create') {
       let numSeats = this.numberOfSeats;
       this.theaterService.addTheater({ name: this.newTheaterName, number_of_seats: this.numberOfSeats, features: this.listOfFeaturesToAdd }).subscribe((id: any) => {
@@ -263,6 +273,7 @@ console.log(this.currentCinemaToUpdate.seats);
   }
   openSeatAddingModal() {
     this.seatAddType='add';
+    this.seatToAddtype="Regular";
     this.addSeatDialog.nativeElement.show();
   }
   closeAddingSeatModal() {

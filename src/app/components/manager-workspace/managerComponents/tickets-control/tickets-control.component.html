@@ -3,21 +3,34 @@
     <dialog #addTicketDialog>
      <form action="#" name="myForm" #createShowform>
       <button (click)="closeTicketAdd()">Close</button>
+      <label for="user">User :</label>
       <select name="user" id="56" [(ngModel)]="chosenUserId">
         <option  *ngFor="let user of usersList"  [value]="user.id" >{{user.name}}</option>
        </select>
+       <label for="show">Show id:</label>
        <select name="show" id="1" [(ngModel)]="chosenShowId" (click)="setSeatsForTheater()">
         <option  *ngFor="let show of showsList"  [value]="show.id" >{{show.id}}</option>
        </select>
+       <label for="seats">Seats number:</label>
        <select name="seats" id="7" [(ngModel)]="chosenSeatId" >
         <option   *ngFor="let seat of currentTheaterSeats"  [value]="seat.id">{{seat.number}}</option>
+       </select>
+       <label for="features">Feature:</label>
+       <select name="features" id="890" [(ngModel)]="chosenFeatureId" >
+        <option   *ngFor="let feature of currentTheaterFeatures"  [value]="feature.id">{{feature.name}}</option>
        </select>
        <button (click)="addTicket()">Add</button>
      </form>
    </dialog>
     <div class="ticketsContainer">
         <div class="ticket" *ngFor="let ticket of ticketsList">
-          <p>Ticket id :{{ticket.id}}</p>
+          <p>Name of user :{{ticket.name}}</p>
+          <p>Theater name :{{ticket.theatername}}</p>
+          <p>Movie name : {{ticket.moviename}}</p>
+          <p>Row : {{ticket.row}}</p>
+          <p>Seat number {{ticket.seatnumber}}</p>
+          <p>Time : {{ticket.time}}</p>
+          <p>Price : {{ticket.price}}</p>
           <button (click)="returnTicket(ticket.id)">Return</button>
         </div>
       </div>

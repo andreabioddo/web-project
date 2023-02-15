@@ -59,21 +59,27 @@ this.newMovieMinimumAge=0;
 }
 addNewMovie(){
   if(this.dialogType=='add'){
-    if(this.newMovieName!=''&&this.newMovieDuration!=0&&this.newMovieDescription!=''&&this.newMovieMinimumAge!=0){
+    if(this.newMovieName&&this.newMovieDuration&&this.newMovieDescription&&this.newMovieMinimumAge){
       this.movieService.addMovie({name:this.newMovieName,description:this.newMovieDescription,duration:this.newMovieDuration,age:this.newMovieMinimumAge}).subscribe(data=>{
         this.updateMoviesWrapper();
         this.closeMovieAddDialog();
       });
+    }else{
+      alert(`Invalid data!`);
     }
     this.updateMoviesWrapper();
     this.closeMovieAddDialog();
   }else{
-    if(this.newMovieName!=''&&this.newMovieDuration!=0&&this.newMovieDescription!=''&&this.newMovieMinimumAge!=0){
+    if(this.newMovieName&&this.newMovieDuration&&this.newMovieDescription&&this.newMovieMinimumAge){
 this.movieService.editMovie({name:this.newMovieName,description:this.newMovieDescription,duration:this.newMovieDuration,age:this.newMovieMinimumAge},this.updatingMovieId).subscribe(data=>{
   this.updateMoviesWrapper();
         this.closeMovieAddDialog();
 });
 this.updateMoviesWrapper();
+    this.closeMovieAddDialog();
+    }else{
+      alert(`Invalid data!`);
+      this.updateMoviesWrapper();
     this.closeMovieAddDialog();
     }
   }

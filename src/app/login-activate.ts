@@ -18,3 +18,19 @@ export class LoginActivate implements CanActivate {
     return true;
   }
 }
+
+@Injectable()
+export class AdminActivate implements CanActivate {
+  constructor(private cookieService: CookieService, private router: Router) {}
+
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): Observable<boolean>|Promise<boolean>|boolean {
+    if(!this.cookieService.check("Admin")) 
+    {
+      this.router.navigate(['/']);
+    }
+    return true;
+  }
+}

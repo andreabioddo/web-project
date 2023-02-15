@@ -24,6 +24,9 @@ export class TicketsControlComponent implements OnInit {
   ticketsList!:any;
   showsList!:any;
   chosenShowId!:any;
+  chosenFeatureId!:any;
+  currentTheaterFeatures!:any;
+  chosenShow!:any;
   constructor(private ticketService: TicketService, private theatersService: TheatersService, private movieService: MovieService, private usersService: UsersService,private showsService:ShowsService) {
     
     
@@ -55,8 +58,9 @@ export class TicketsControlComponent implements OnInit {
   }
   returnTicket(id:number){
 this.ticketService.deleteTicket(id).subscribe((data:any)=>{
-  
+  this.update();
 });
+
   }
   closeTicketAdd(){
     this.addTicketDialog.nativeElement.close();
@@ -71,15 +75,22 @@ this.ticketService.deleteTicket(id).subscribe((data:any)=>{
         return false;
       }
     })){
-      this.ticketService.addTicket({price:40,id_seat:this.chosenSeatId,id_user:this.chosenUserId,id_show:this.chosenShowId}).subscribe((data:any)=>{
+      let price=40;
+      if(this.chosenFeatureId){
+        price*=1.2;
+      }
+      this.ticketService.addTicket({price:price,id_seat:this.chosenSeatId,id_user:this.chosenUserId,id_show:this.chosenShowId}).subscribe((data:any)=>{
         this.update();
         this.update();
             });
     }
     
+  }else{
+    alert(`Invalid data!`)
   }
   this.update();
   this.update();
+  this.chosenFeatureId=0;
   this.addTicketDialog.nativeElement.close();
   }
   setSeatsForTheater() {
@@ -87,10 +98,16 @@ this.ticketService.deleteTicket(id).subscribe((data:any)=>{
     if (this.chosenShowId) {
       setTimeout(() => {
       let cinema=0;
-      
+      this.chosenShow=this.showsList.find((elem:any)=>{
+        return this.chosenShowId==elem.id;
+       });
 cinema=this.showsList.find((elem:any)=>{
  return this.chosenShowId==elem.id;
 }).id_theater;
+this.currentTheaterFeatures=(this.theatersList.find((elem: any) => {
+
+  return elem.id == cinema;
+})).features;
         this.currentTheaterSeats = (this.theatersList.find((elem: any) => {
 
           return elem.id == cinema;
@@ -99,8 +116,7 @@ cinema=this.showsList.find((elem:any)=>{
       }, 200);
       this.update();
       this.update();
-      this.update();
-      this.update();
+     
     }
     
 
@@ -109,8 +125,7 @@ cinema=this.showsList.find((elem:any)=>{
 
     this.update();
     this.update();
-    this.update();
-    this.update();
+    
 
   }
 }

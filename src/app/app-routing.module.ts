@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { PosterComponent } from './components/poster/poster.component';
-import { LoginActivate } from './login-activate';
+import { AdminActivate, LoginActivate } from './login-activate';
 import { OverviewComponent } from './components/overview/overview.component';
 import { MovieDetailComponent } from './components/movie-detail/movie-detail.component';
 import { TicketComponent } from './components/ticket/ticket.component';
@@ -30,7 +30,7 @@ const routes: Routes = [{ path: '', component: HomeComponent },
   { path: 'movies', component: MovieControlComponent },
   {path:'shedule',component:SheduleControlComponent},
   {path:'tickets',component:TicketsControlComponent} 
-] /*canActivate: [LoginActivate]*/ }
+] }
 ];
 
 

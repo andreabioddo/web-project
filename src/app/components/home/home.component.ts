@@ -25,8 +25,8 @@ export class HomeComponent implements OnInit {
   }
   logIn(e: any) {
     e.preventDefault();
-    this.globalService.doLogin(this.email, this.password);
 
+    this.globalService.doLogin(this.email, this.password);
   }
   register() {
     let user: User = {
