@@ -34,7 +34,10 @@ export class GlobalService {
                 this.token = token.login;
                 this.loggedIn = true;
             },
-            error => console.error('Error during login: ', error));
+            error => {
+                console.error('Error during login: ', error);
+                alert("Error during login: ", error);
+            });
     }
     doRegister(user: User) {
         const headers = new HttpHeaders({

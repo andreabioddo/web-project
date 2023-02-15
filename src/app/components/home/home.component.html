@@ -11,7 +11,7 @@
     <form action="#" class="registrationForm" *ngIf="registration">
         <input type="text" name="name" placeholder="Your Name" [(ngModel)]="registerName">
         <input type="text" name="email" placeholder="Your login" [(ngModel)]="registerEmail">
-        <input type="text" name="password" placeholder="Your password" [(ngModel)]="registerPassword">
+        <input type="password" name="password" placeholder="Your password" [(ngModel)]="registerPassword">
         <button class="registrationButton" (click)="register()" >Submit</button>
     </form>
 </div>
