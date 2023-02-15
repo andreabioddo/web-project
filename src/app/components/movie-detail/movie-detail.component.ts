@@ -105,9 +105,13 @@ export class MovieDetailComponent implements OnInit {
             name: ""
         };
 
-        this.ratingService.addRating(rating).subscribe(c => {
-            this.ratings.push(rating);
-        }
+        this.ratingService.addRating(rating).subscribe(
+            success => {
+                this.ratings.push(rating);
+            },
+            err => {
+                console.log(err);
+            }
         );
     }
 

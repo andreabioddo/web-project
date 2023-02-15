@@ -28,13 +28,6 @@ export class HomeComponent implements OnInit {
   logIn(e: any) {
     e.preventDefault();
     this.globalService.doLogin(this.email, this.password);
-    if(this.cookieService.check("Admin")){
-      this.router.navigate(['/manager']);
-      return;
-    } 
-    if(this.cookieService.check("AuthToken")){
-      this.router.navigate(['/overview']);
-    }
   }
   register() {
     let user: User = {

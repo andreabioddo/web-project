@@ -10,7 +10,7 @@ export class GlobalService {
 
     private token: string = '';
     public loggedIn = false;
-    constructor(private http: HttpClient, private cookieService: CookieService) { }
+    constructor(private http: HttpClient, private cookieService: CookieService, private router:Router) { }
 
     doLogin(email: string, password: string) {
         const headers = new HttpHeaders({
@@ -27,16 +27,24 @@ export class GlobalService {
         }
         return this.http.post<any>(AppSettings.API_ENDPOINT + '/login', user, options).subscribe(
             token => {
-                if(token.isAdmin){
-                    this.cookieService.set('Admin', 'true', { expires: new Date(new Date().getTime() +  1000 * 60 * 60) });
+                this.cookieService.delete('Admin');
+                if (token.isAdmin) {
+                    this.cookieService.set('Admin', 'true', { expires: new Date(new Date().getTime() + 1000 * 60 * 60) });
                 }
-                this.cookieService.set('AuthToken', token.login, { expires: new Date(new Date().getTime() +  1000 * 60 * 60) });
+                this.cookieService.set('AuthToken', token.login, { expires: new Date(new Date().getTime() + 1000 * 60 * 60) });
                 this.token = token.login;
                 this.loggedIn = true;
+                if (this.cookieService.check("Admin")) {
+                    this.router.navigate(['/manager']);
+                    return;
+                }
+                if (this.cookieService.check("AuthToken")) {
+                    this.router.navigate(['/overview']);
+                }
             },
             error => {
                 console.error('Error during login: ', error);
-                alert("Error during login: ", error);
+                alert("Error during login: " + error);
             });
     }
     doRegister(user: User) {
@@ -50,7 +58,7 @@ export class GlobalService {
 
         return this.http.post<any>(AppSettings.API_ENDPOINT + '/user/register', user, options).subscribe(
             token => {
-                this.cookieService.set('AuthToken', token.login, { expires: new Date(new Date().getTime() +  1000 * 60 * 60) });
+                this.cookieService.set('AuthToken', token.login, { expires: new Date(new Date().getTime() + 1000 * 60 * 60) });
                 this.token = token.login;
                 this.loggedIn = true;
             },
