@@ -8,7 +8,7 @@ import { UsersService } from 'src/app/user.service';
 @Component({
   selector: 'app-tickets-control',
   templateUrl: './tickets-control.component.html',
-  styleUrls: ['./tickets-control.component.scss']
+  styleUrls: ['./tickets-control.component.scss'],
 })
 export class TicketsControlComponent implements OnInit {
   @ViewChild('addTicketDialog') addTicketDialog!: ElementRef<any>;
@@ -21,114 +21,120 @@ export class TicketsControlComponent implements OnInit {
   theatersSeats!: any;
   currentTheaterSeats!: any;
   chosenSeatId!: any;
-  ticketsList!:any;
-  showsList!:any;
-  chosenShowId!:any;
-  chosenFeatureId!:any;
-  currentTheaterFeatures!:any;
-  chosenShow!:any;
-  constructor(private ticketService: TicketService, private theatersService: TheatersService, private movieService: MovieService, private usersService: UsersService,private showsService:ShowsService) {
-    
-    
+  ticketsList!: any;
+  showsList!: any;
+  chosenShowId!: any;
+  chosenFeatureId!: any;
+  currentTheaterFeatures!: any;
+  chosenShow!: any;
+  constructor(
+    private ticketService: TicketService,
+    private theatersService: TheatersService,
+    private movieService: MovieService,
+    private usersService: UsersService,
+    private showsService: ShowsService
+  ) {
     this.update();
   }
   update() {
-    this.showsService.getShows().subscribe(shows=>{
-      this.showsList=shows;
-    })
-    this.movieService.getMovies().subscribe(movies => {
+    this.showsService.getShows().subscribe((shows) => {
+      this.showsList = shows;
+    });
+    this.movieService.getMovies().subscribe((movies) => {
       this.moviesList = movies;
-    })
-    this.usersService.getUsers().subscribe((users:any) => {
+    });
+    this.usersService.getUsers().subscribe((users: any) => {
       this.usersList = users;
-    })
-    this.theatersService.getTheaters().subscribe((theaters:any) => {
+    });
+    this.theatersService.getTheaters().subscribe((theaters: any) => {
       this.theatersList = theaters;
     });
-    this.ticketService.getTicketsAdmin().subscribe((tickets:any) => {
-      this.ticketsList=tickets;
+    this.ticketService.getTicketsAdmin().subscribe((tickets: any) => {
+      this.ticketsList = tickets;
       console.log(tickets);
     });
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
   openTicketAdd() {
     this.addTicketDialog.nativeElement.show();
   }
-  returnTicket(id:number){
-this.ticketService.deleteTicket(id).subscribe((data:any)=>{
-  this.update();
-},
-error =>{
-  alert("Ticket cannot be returned. Too late.");
-});
-
+  returnTicket(id: number) {
+    this.ticketService.deleteTicket(id).subscribe(
+      (data: any) => {
+        this.update();
+      },
+      (error) => {
+        alert('Ticket cannot be returned. Too late.');
+      }
+    );
   }
-  closeTicketAdd(){
+  closeTicketAdd() {
     this.addTicketDialog.nativeElement.close();
   }
-  
+
   addTicket() {
-  if(this.chosenSeatId&&this.chosenShowId&&this.chosenUserId){
-    if(!this.ticketsList.find((elem:any)=>{
-      if((elem.id_seat==this.chosenSeatId)&&(elem.id_show==this.chosenShowId)){
-        return true;
-      }else{
-        return false;
+    if (this.chosenSeatId && this.chosenShowId && this.chosenUserId) {
+      if (
+        !this.ticketsList.find((elem: any) => {
+          if (
+            elem.id_seat == this.chosenSeatId &&
+            elem.id_show == this.chosenShowId
+          ) {
+            return true;
+          } else {
+            return false;
+          }
+        })
+      ) {
+        let price = 40;
+        if (this.chosenFeatureId) {
+          price *= 1.2;
+        }
+        this.ticketService
+          .addTicket({
+            price: price,
+            id_seat: this.chosenSeatId,
+            id_user: this.chosenUserId,
+            id_show: this.chosenShowId,
+          })
+          .subscribe((data: any) => {
+            this.update();
+            this.update();
+          }, error => {
+            alert('Ticket cannot be bought.  The seat is already taken!');
+          });
       }
-    })){
-      let price=40;
-      if(this.chosenFeatureId){
-        price*=1.2;
-      }
-      this.ticketService.addTicket({price:price,id_seat:this.chosenSeatId,id_user:this.chosenUserId,id_show:this.chosenShowId}).subscribe((data:any)=>{
-        this.update();
-        this.update();
-            });
+    } else {
+      alert(`Invalid data!`);
     }
-    
-  }else{
-    alert(`Invalid data!`)
-  }
-  this.update();
-  this.update();
-  this.chosenFeatureId=0;
-  this.addTicketDialog.nativeElement.close();
+    this.update();
+    this.update();
+    this.chosenFeatureId = 0;
+    this.addTicketDialog.nativeElement.close();
   }
   setSeatsForTheater() {
-    
     if (this.chosenShowId) {
       setTimeout(() => {
-      let cinema=0;
-      this.chosenShow=this.showsList.find((elem:any)=>{
-        return this.chosenShowId==elem.id;
-       });
-cinema=this.showsList.find((elem:any)=>{
- return this.chosenShowId==elem.id;
-}).id_theater;
-this.currentTheaterFeatures=(this.theatersList.find((elem: any) => {
-
-  return elem.id == cinema;
-})).features;
-        this.currentTheaterSeats = (this.theatersList.find((elem: any) => {
-
+        let cinema = 0;
+        this.chosenShow = this.showsList.find((elem: any) => {
+          return this.chosenShowId == elem.id;
+        });
+        cinema = this.showsList.find((elem: any) => {
+          return this.chosenShowId == elem.id;
+        }).id_theater;
+        this.currentTheaterFeatures = this.theatersList.find((elem: any) => {
           return elem.id == cinema;
-        })).seats;
-        
+        }).features;
+        this.currentTheaterSeats = this.theatersList.find((elem: any) => {
+          return elem.id == cinema;
+        }).seats;
       }, 200);
       this.update();
       this.update();
-     
     }
-    
-
-    
-
 
     this.update();
     this.update();
-    
-
   }
 }

@@ -67,7 +67,7 @@ export class GlobalService {
                 this.loggedIn = true;
                 this.router.navigate(['/overview']);
             },
-            error => {console.error('Error during login: ', error)});
+            error => {console.error('Error during login: ', error); alert("Error during registration: "+ error.error.message +"\n"+ error.error.error);});
     }
 
 }

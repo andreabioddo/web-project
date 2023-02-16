@@ -1,16 +1,68 @@
 <div class="container">
-    <form action="#" class="authorisationForm" *ngIf="!registration">
-        <input type="text" name="email" placeholder="Your login" [(ngModel)]="email" />
-        <input type="password" name="password" placeholder="Your password" [(ngModel)]="password" />
-        <div class="button_container">
-            <button (click)="registrationOpen($event)">Registration</button>
-            <button (click)="logIn($event)">Log in</button>            
+    <div class="row justify-content-center mt-5">
+        <h1>Welcome in CinemaWeb</h1>
+        <p>Log in or register to see and buy tickets for movies!</p>
+        <p>Please note that when you login, you will redirected automatically in the home page! Enjoy our Cinema!</p>
+    </div>
+</div>
+
+
+<div class="container" *ngIf="registration">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-light text-white text-center">
+                    <h4 class="text-dark">Registration Form</h4>
+                </div>
+                <div class="card-body">
+                    <form action="#" class="authorisationForm" >
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" name="name" id="name" class="form-control" placeholder="Your Name" [(ngModel)]="registerName">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="text" name="email" id="email" class="form-control" placeholder="Your Email" [(ngModel)]="registerEmail">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" name="password" id="password" class="form-control" placeholder="Your password" [(ngModel)]="registerPassword">
+                        </div>
+                        <div style="margin-top: 20px;">
+                            <button class="btn btn-success" (click)="register()" >Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-    </form>
-    <form action="#" class="registrationForm" *ngIf="registration">
-        <input type="text" name="name" placeholder="Your Name" [(ngModel)]="registerName">
-        <input type="text" name="email" placeholder="Your login" [(ngModel)]="registerEmail">
-        <input type="password" name="password" placeholder="Your password" [(ngModel)]="registerPassword">
-        <button class="registrationButton" (click)="register()" >Submit</button>
-    </form>
+    </div>
+</div>
+
+
+<div class="container" *ngIf="!registration">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-light text-white text-center">
+                    <h4 class="text-dark">Login Form</h4>
+                </div>
+                <div class="card-body">
+                    <form action="#" class="authorisationForm" >
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="text" class="form-control" id="email" required name="email" placeholder="Your Email" [(ngModel)]="email" />
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" id="password" name="password" required placeholder="Your password" [(ngModel)]="password" />
+                        </div>
+                        <div style="margin-top: 20px;">
+                            <button class="btn btn-light" style="margin-right: 10px;" (click)="registrationOpen($event)">Registration</button>
+                            <button class="btn btn-success" (click)="logIn($event)">Log in</button>   
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
